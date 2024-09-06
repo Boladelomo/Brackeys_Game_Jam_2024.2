@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dn0okr010def6"]
 
-[ext_resource type="Script" path="res://Sidescroller.gd" id="1_cb7iq"]
+[ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
 [ext_resource type="Texture2D" uid="uid://bbaq480gsxqyi" path="res://icon.svg" id="2_sciak"]
-[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://DebugLabel.tres" id="3_o725q"]
+[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_o725q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
 size = Vector2(116.5, 67.5)

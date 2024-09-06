@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 enum UnitState { IDLE, WALKING, ATTACKING, FALLING, JUMPING }
 
-#input, movement and targeting
 @export var myBody : CharacterBody2D
 @export var sprite : Sprite2D 
 
@@ -49,10 +48,11 @@ func _physics_process(delta):
 	#vertical movement
 	velocity.y += get_gravity() * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		#print("jumping: startY = " + str(myBody.position.y))
 		jump()	
+
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		attack_time = MAX_ATTACK_TIME
+
 	#horizontal movement
 	direction.x = Input.get_axis("left", "right")
 	if direction:
@@ -62,7 +62,6 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-#smoothing janky movement by lerping FPS
 func _process(delta): 
 	update_state()
 	label.text = update_debug_text()
