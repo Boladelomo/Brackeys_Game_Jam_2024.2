@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn0okr010def6"]
+
+[ext_resource type="Script" path="res://Sidescroller.gd" id="1_cb7iq"]
+[ext_resource type="Texture2D" uid="uid://bbaq480gsxqyi" path="res://icon.svg" id="2_sciak"]
+[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://DebugLabel.tres" id="3_o725q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
+size = Vector2(116.5, 67.5)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite", "label")]
+script = ExtResource("1_cb7iq")
+myBody = NodePath(".")
+sprite = NodePath("Sprite2D")
+label = NodePath("Label")
+jumpHeight = 100.0
+jumpTimeToPeak = 0.5
+jumpTimeToDescent = 0.4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sciak")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28.75)
+shape = SubResource("RectangleShape2D_y2p2d")
+debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -128.0
+offset_right = 59.0
+offset_bottom = -105.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("3_o725q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hints" type="Label" parent="Camera2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = -250.0
+offset_right = 435.0
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "movement = WASD/d-pad
+Jump = spacebar
+attack = R"
+label_settings = ExtResource("3_o725q")
+horizontal_alignment = 1
+vertical_alignment = 1
