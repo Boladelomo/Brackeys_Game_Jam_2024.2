@@ -7,22 +7,23 @@
 [node name="world" type="Node2D"]
 
 [node name="Stars" type="Sprite2D" parent="."]
-position = Vector2(354, -114)
+position = Vector2(330, -222)
 texture = ExtResource("1_l8kns")
 
 [node name="Stars2" type="Sprite2D" parent="."]
-position = Vector2(-286, -112)
+position = Vector2(-310, -220)
 texture = ExtResource("1_l8kns")
 
 [node name="Stars3" type="Sprite2D" parent="."]
-position = Vector2(327, 309)
+position = Vector2(303, 201)
 texture = ExtResource("1_l8kns")
 
 [node name="Stars4" type="Sprite2D" parent="."]
-position = Vector2(-313, 311)
+position = Vector2(-337, 203)
 texture = ExtResource("1_l8kns")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.15, 1.15)
 
 [node name="Hints" type="Label" parent="Camera2D"]
 anchors_preset = 15
