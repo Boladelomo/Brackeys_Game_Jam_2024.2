@@ -9,9 +9,12 @@ enum UnitState { IDLE, WALKING, ATTACKING, FALLING, JUMPING }
 @export var label : Label
 
 #directionment
-var direction : Vector2 = Vector2.ZERO
-const MaxSpeed : float = 300.0
-@export var speed : float = MaxSpeed
+var direction := Vector2.ZERO
+var thrust_vector := Vector2.ZERO
+
+const MAX_SPEED := 60.0
+const MAX_THRUST := 7
+var thrust := 3.5
 
 @export var jumpHeight : float
 @export var jumpTimeToPeak : float
@@ -45,26 +48,37 @@ func update_state():
 		state = UnitState.JUMPING if velocity.y < 0.0 else UnitState.FALLING
 
 func _physics_process(delta):
-	#vertical directionment
-	velocity.y += get_gravity() * delta
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jump()	
+	#vertical movement
+	#velocity.y += get_gravity() * delta
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#jump()
 
+	if Input.is_action_pressed("up"):
+		thrust_vector.y += max(-thrust, -MAX_THRUST)
+		
+	if Input.is_action_pressed("down"):
+		thrust_vector.y += min(thrust, MAX_THRUST)
+
+	velocity.y = max(thrust_vector.y, -MAX_SPEED) if thrust_vector.y < 0.0 else min(thrust_vector.y, MAX_SPEED) 
+
+	if Input.is_action_pressed("left"):
+		thrust_vector.x += max(-thrust, -MAX_THRUST)
+		
+	if Input.is_action_pressed("right"):
+		thrust_vector.x += min(thrust, MAX_THRUST)
+	
+	velocity.x = max(thrust_vector.x, -MAX_SPEED) if thrust_vector.x < 0.0 else min(thrust_vector.x, MAX_SPEED) 
+	#TODO: action locks you in place, for dialogues	
+	#Action logic
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		attack_time = MAX_ATTACK_TIME
-
-	#horizontal directionment
-	direction.x = Input.get_axis("left", "right")
-	if direction.x:
-		velocity.x = direction.x * speed 
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 
 func _process(delta): 
 	update_state()
-	label.text = update_debug_text()
+	label.text = "thrustX: " + str(thrust_vector.x) + " thrustY: " + str(thrust_vector.y)
+	#label.text = update_debug_text()
 	var fps = Engine.get_frames_per_second()
 	var lerpInterval = direction / fps
 	var lerpPosition = global_transform.origin + lerpInterval

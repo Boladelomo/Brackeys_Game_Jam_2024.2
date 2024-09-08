@@ -22,8 +22,6 @@ texture = ExtResource("1_l8kns")
 position = Vector2(-313, 311)
 texture = ExtResource("1_l8kns")
 
-[node name="Player" parent="." instance=ExtResource("1_fyooy")]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Hints" type="Label" parent="Camera2D"]
@@ -42,3 +40,5 @@ attack = R"
 label_settings = ExtResource("3_vel1o")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("1_fyooy")]
