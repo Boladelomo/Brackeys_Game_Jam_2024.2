@@ -1,11 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://3n10vjk5eo50"]
+[gd_scene load_steps=4 format=3 uid="uid://3n10vjk5eo50"]
 
-[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/Sidescroller.tscn" id="1_fyooy"]
-[ext_resource type="PackedScene" uid="uid://dmfh0sx8qjjgq" path="res://Scenes/Platform.tscn" id="2_nbrmc"]
+[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/Controller.tscn" id="1_fyooy"]
+[ext_resource type="Texture2D" uid="uid://qvjpro8hvj0p" path="res://Assets/stars.png" id="1_l8kns"]
+[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_vel1o"]
 
 [node name="world" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_fyooy")]
+[node name="Stars" type="Sprite2D" parent="."]
+position = Vector2(354, -114)
+texture = ExtResource("1_l8kns")
 
-[node name="Platform" parent="." instance=ExtResource("2_nbrmc")]
-position = Vector2(-178, 286)
+[node name="Stars2" type="Sprite2D" parent="."]
+position = Vector2(-286, -112)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars3" type="Sprite2D" parent="."]
+position = Vector2(327, 309)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars4" type="Sprite2D" parent="."]
+position = Vector2(-313, 311)
+texture = ExtResource("1_l8kns")
+
+[node name="Player" parent="." instance=ExtResource("1_fyooy")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hints" type="Label" parent="Camera2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 184.0
+offset_top = -328.0
+offset_right = 579.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "movement = WASD/d-pad
+Jump = spacebar
+attack = R"
+label_settings = ExtResource("3_vel1o")
+horizontal_alignment = 1
+vertical_alignment = 1

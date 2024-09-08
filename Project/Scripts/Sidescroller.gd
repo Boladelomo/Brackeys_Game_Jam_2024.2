@@ -77,6 +77,7 @@ func _process(delta):
 func get_gravity() -> float:
 	return jumpGravity if velocity.y < 0.0 else fallGravity
 
+#TODO: replace with boost
 func jump():
 	velocity.y = jumpVelocity
 
