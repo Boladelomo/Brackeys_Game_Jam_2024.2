@@ -8,7 +8,7 @@ enum UnitState { IDLE, WALKING, ATTACKING, FALLING, JUMPING }
 #UI
 @export var label : Label
 
-#movement
+#directionment
 var direction : Vector2 = Vector2.ZERO
 const MaxSpeed : float = 300.0
 @export var speed : float = MaxSpeed
@@ -45,7 +45,7 @@ func update_state():
 		state = UnitState.JUMPING if velocity.y < 0.0 else UnitState.FALLING
 
 func _physics_process(delta):
-	#vertical movement
+	#vertical directionment
 	velocity.y += get_gravity() * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()	
@@ -53,12 +53,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		attack_time = MAX_ATTACK_TIME
 
-	#horizontal movement
+	#horizontal directionment
 	direction.x = Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction.x * speed #TODO: snappy motion? instant accel?
+	if direction.x:
+		velocity.x = direction.x * speed 
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)		
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 
