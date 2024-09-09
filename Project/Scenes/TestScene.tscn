@@ -2,44 +2,81 @@
 
 [ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/Controller.tscn" id="1_fyooy"]
 [ext_resource type="Texture2D" uid="uid://qvjpro8hvj0p" path="res://Assets/stars.png" id="1_l8kns"]
-[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_vel1o"]
+[ext_resource type="PackedScene" uid="uid://drqqsn44i8lko" path="res://asteroid.tscn" id="4_3f4tv"]
 
 [node name="world" type="Node2D"]
 
 [node name="Stars" type="Sprite2D" parent="."]
-position = Vector2(330, -222)
+position = Vector2(-297, -561)
 texture = ExtResource("1_l8kns")
 
 [node name="Stars2" type="Sprite2D" parent="."]
-position = Vector2(-310, -220)
+position = Vector2(-937, -559)
 texture = ExtResource("1_l8kns")
 
 [node name="Stars3" type="Sprite2D" parent="."]
-position = Vector2(303, 201)
+position = Vector2(-324, -138)
 texture = ExtResource("1_l8kns")
 
 [node name="Stars4" type="Sprite2D" parent="."]
-position = Vector2(-337, 203)
+position = Vector2(-964, -136)
 texture = ExtResource("1_l8kns")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.15, 1.15)
+[node name="Stars5" type="Sprite2D" parent="."]
+position = Vector2(976, -560)
+texture = ExtResource("1_l8kns")
 
-[node name="Hints" type="Label" parent="Camera2D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 184.0
-offset_top = -328.0
-offset_right = 579.0
-offset_bottom = -181.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "movement = WASD/d-pad
-Jump = spacebar
-attack = R"
-label_settings = ExtResource("3_vel1o")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Stars6" type="Sprite2D" parent="."]
+position = Vector2(336, -558)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars7" type="Sprite2D" parent="."]
+position = Vector2(949, -137)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars8" type="Sprite2D" parent="."]
+position = Vector2(309, -135)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars9" type="Sprite2D" parent="."]
+position = Vector2(-328, 333)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars10" type="Sprite2D" parent="."]
+position = Vector2(-968, 335)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars11" type="Sprite2D" parent="."]
+position = Vector2(-355, 756)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars12" type="Sprite2D" parent="."]
+position = Vector2(-995, 758)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars13" type="Sprite2D" parent="."]
+position = Vector2(936, 340)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars14" type="Sprite2D" parent="."]
+position = Vector2(296, 342)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars15" type="Sprite2D" parent="."]
+position = Vector2(909, 763)
+texture = ExtResource("1_l8kns")
+
+[node name="Stars16" type="Sprite2D" parent="."]
+position = Vector2(269, 765)
+texture = ExtResource("1_l8kns")
+
+[node name="Asteroid" parent="." instance=ExtResource("4_3f4tv")]
+position = Vector2(-1, -105)
+
+[node name="Asteroid2" parent="." instance=ExtResource("4_3f4tv")]
+position = Vector2(-138, 59)
+
+[node name="Asteroid3" parent="." instance=ExtResource("4_3f4tv")]
+position = Vector2(128, 56)
 
 [node name="Player" parent="." instance=ExtResource("1_fyooy")]

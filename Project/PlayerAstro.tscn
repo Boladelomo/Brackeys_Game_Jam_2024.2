@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dn0okr010def6"]
+[gd_scene load_steps=14 format=3 uid="uid://7f23ghiy0ewb"]
 
-[ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
-[ext_resource type="Texture2D" uid="uid://wvo2rf304us3" path="res://AstroSpriteSheet_IdleWalk.png" id="2_bh2ne"]
-[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_o725q"]
+[ext_resource type="Script" path="res://player_astro.gd" id="1_8s2h1"]
+[ext_resource type="Texture2D" uid="uid://wvo2rf304us3" path="res://AstroSpriteSheet_IdleWalk.png" id="1_jj5qe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
-size = Vector2(105, 200)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypctr"]
+radius = 53.0
+height = 262.0
 
 [sub_resource type="Animation" id="Animation_30d3j"]
 resource_name = "Idle_breath_down"
@@ -171,59 +171,23 @@ _data = {
 "space_walk_up": SubResource("Animation_68qkb")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite", "label")]
-scale = Vector2(0.2, 0.2)
-script = ExtResource("1_cb7iq")
-myBody = NodePath(".")
-sprite = NodePath("Sprite2D")
-label = NodePath("Label")
+[node name="Astro" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_8s2h1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_bh2ne")
+texture = ExtResource("1_jj5qe")
 hframes = 5
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 15)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_y2p2d")
-debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
-
-[node name="Label" type="Label" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -55.0
-offset_top = -76.0
-offset_right = 63.0
-offset_bottom = -31.0
-grow_horizontal = 2
-grow_vertical = 2
-label_settings = ExtResource("3_o725q")
-horizontal_alignment = 1
-vertical_alignment = 1
+visible = false
+position = Vector2(7, 30)
+shape = SubResource("CapsuleShape2D_ypctr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_ogsv8")
 }
 autoplay = "Idle_breath_right"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Hints" type="Label" parent="Camera2D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 184.0
-offset_top = -328.0
-offset_right = 579.0
-offset_bottom = -181.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "movement = WASD/d-pad
-boost  = spacebar
-action  = R"
-label_settings = ExtResource("3_o725q")
-horizontal_alignment = 1
-vertical_alignment = 1
