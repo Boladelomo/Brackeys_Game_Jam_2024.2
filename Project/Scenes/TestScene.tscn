@@ -72,6 +72,7 @@ texture = ExtResource("1_l8kns")
 
 [node name="Asteroid" parent="." instance=ExtResource("4_3f4tv")]
 position = Vector2(-1, -105)
+scale = Vector2(0.996396, 1)
 
 [node name="Asteroid2" parent="." instance=ExtResource("4_3f4tv")]
 position = Vector2(-138, 59)

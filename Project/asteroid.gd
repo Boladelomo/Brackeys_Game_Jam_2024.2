@@ -3,7 +3,7 @@ extends Area2D
 enum AsteroidState { EMPTY, USED, DAMAGED }
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@export var safe_radius := 25.0
+@export var safe_radius := 50.0
 
 var safe_color := Color.AQUAMARINE
 var empty_color := Color.WHITE
@@ -17,7 +17,10 @@ var target_position : Vector2 = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	collision_shape_2d.shape.radius = safe_radius
+	collision_shape_2d.position = position
 	queue_redraw()
+	print(collision_shape_2d.shape.radius)
+	print(position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,7 +31,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	draw_circle(position, safe_radius, current_color)
-	draw_line(position, Vector2.UP * safe_radius, Color.WHITE, 2.0, false)
+	#draw_line(position, Vector2.UP * safe_radius, Color.WHITE, 2.0, false)
 	if collided and target_position:
 		draw_line(target_position, position, Color.RED, 4.0, false)
 
