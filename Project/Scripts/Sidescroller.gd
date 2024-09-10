@@ -83,4 +83,3 @@ func boost():
 	#print(velocity.x)
 	velocity.y += boost_thrust * Input.get_axis("up", "down")
 	#print(velocity.y)
-
