@@ -3,7 +3,7 @@ extends Area2D
 enum AsteroidState { EMPTY, USED, DAMAGED }
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@export var safe_radius := 50.0
+@export var safe_radius := 75.0
 
 var safe_color := Color.AQUAMARINE
 var empty_color := Color.WHITE
@@ -35,6 +35,7 @@ func _draw() -> void:
 	if collided and target_position:
 		draw_line(target_position, position, Color.RED, 4.0, false)
 
+#TODO: change logic for a fully encased player, maybe a smaller inner collider after cracking the asteroid with the tool
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player": #TODO: use another way to ID the player, avoid hardcoded strings
 		print("player X: " + str(body.position.x) + ", player Y: " + str(body.position.y))

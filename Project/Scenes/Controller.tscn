@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dn0okr010def6"]
 
 [ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
-[ext_resource type="Texture2D" uid="uid://wvo2rf304us3" path="res://AstroSpriteSheet_IdleWalk.png" id="2_bh2ne"]
+[ext_resource type="Texture2D" uid="uid://d1jgckdungpo3" path="res://Assets/AstroSpriteSheet_IdleWalk_V3_PIXEL.png" id="2_cohs5"]
 [ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_o725q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
@@ -172,20 +172,19 @@ _data = {
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite", "label")]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_cb7iq")
 myBody = NodePath(".")
 sprite = NodePath("Sprite2D")
 label = NodePath("Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_bh2ne")
+texture = ExtResource("2_cohs5")
 hframes = 5
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 15)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_y2p2d")
 debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
 

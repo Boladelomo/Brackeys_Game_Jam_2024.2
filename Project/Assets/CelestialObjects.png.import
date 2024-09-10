@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wvo2rf304us3"
-path="res://.godot/imported/AstroSpriteSheet_IdleWalk.png-4b02f0484bc03dd854b9330c01988bd7.ctex"
+uid="uid://cjvb51x80li37"
+path="res://.godot/imported/CelestialObjects.png-1dc28511290293940a83cbf7f9aa4412.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AstroSpriteSheet_IdleWalk.png"
-dest_files=["res://.godot/imported/AstroSpriteSheet_IdleWalk.png-4b02f0484bc03dd854b9330c01988bd7.ctex"]
+source_file="res://Assets/CelestialObjects.png"
+dest_files=["res://.godot/imported/CelestialObjects.png-1dc28511290293940a83cbf7f9aa4412.ctex"]
 
 [params]
 

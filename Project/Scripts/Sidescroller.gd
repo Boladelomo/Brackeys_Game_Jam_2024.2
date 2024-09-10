@@ -11,7 +11,8 @@ var direction := Vector2.ZERO
 var thrust_vector := Vector2.ZERO
 
 const MAX_SPEED := 120.0
-const MAX_THRUST := 12
+const MAX_THRUST := 12.0
+const MAX_BOOSTED_SPEED := 160.0
 @export var thrust := 4.5
 @export var boost_thrust := 40.0
 
@@ -77,8 +78,9 @@ func _process(delta):
 
 #TODO: replace with boost
 func boost():
+	#TODO: puff of gas?
 	velocity.x += boost_thrust * Input.get_axis("left", "right")
-	print(velocity.x)
+	#print(velocity.x)
 	velocity.y += boost_thrust * Input.get_axis("up", "down")
-	print(velocity.y)
+	#print(velocity.y)
 

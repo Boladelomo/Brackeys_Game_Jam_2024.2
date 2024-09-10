@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://7f23ghiy0ewb"]
 
 [ext_resource type="Script" path="res://player_astro.gd" id="1_8s2h1"]
-[ext_resource type="Texture2D" uid="uid://wvo2rf304us3" path="res://AstroSpriteSheet_IdleWalk.png" id="1_jj5qe"]
+[ext_resource type="Texture2D" uid="uid://wvo2rf304us3" path="res://Assets/AstroSpriteSheet_IdleWalk.png" id="1_jj5qe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypctr"]
 radius = 53.0
