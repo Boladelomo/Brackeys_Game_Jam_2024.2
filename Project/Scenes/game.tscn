@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://3n10vjk5eo50"]
+
+[ext_resource type="Script" path="res://Scenes/game_manager.gd" id="1_5uvxf"]
+[ext_resource type="Texture2D" uid="uid://qvjpro8hvj0p" path="res://Assets/stars.png" id="1_56d3n"]
+[ext_resource type="PackedScene" uid="uid://c8tjpkwgpjq7e" path="res://Scenes/asteroid_manager.tscn" id="2_yyxbx"]
+[ext_resource type="PackedScene" uid="uid://drqqsn44i8lko" path="res://Scenes/asteroid.tscn" id="3_4uphc"]
+[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/player_controller.tscn" id="4_kgwvj"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_5uvxf")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Stars17" type="Sprite2D" parent="Background"]
+position = Vector2(269, 765)
+scale = Vector2(100, 100)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars" type="Sprite2D" parent="Background"]
+position = Vector2(-297, -561)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars2" type="Sprite2D" parent="Background"]
+position = Vector2(-937, -559)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars3" type="Sprite2D" parent="Background"]
+position = Vector2(-324, -138)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars4" type="Sprite2D" parent="Background"]
+position = Vector2(-964, -136)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars5" type="Sprite2D" parent="Background"]
+position = Vector2(976, -560)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars6" type="Sprite2D" parent="Background"]
+position = Vector2(336, -558)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars7" type="Sprite2D" parent="Background"]
+position = Vector2(949, -137)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars8" type="Sprite2D" parent="Background"]
+position = Vector2(309, -135)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars9" type="Sprite2D" parent="Background"]
+position = Vector2(-328, 333)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars10" type="Sprite2D" parent="Background"]
+position = Vector2(-968, 335)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars11" type="Sprite2D" parent="Background"]
+position = Vector2(-355, 756)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars12" type="Sprite2D" parent="Background"]
+position = Vector2(-995, 758)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars13" type="Sprite2D" parent="Background"]
+position = Vector2(936, 340)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars14" type="Sprite2D" parent="Background"]
+position = Vector2(296, 342)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars15" type="Sprite2D" parent="Background"]
+position = Vector2(909, 763)
+texture = ExtResource("1_56d3n")
+
+[node name="Stars16" type="Sprite2D" parent="Background"]
+position = Vector2(269, 765)
+texture = ExtResource("1_56d3n")
+
+[node name="AsteroidManager" parent="." instance=ExtResource("2_yyxbx")]
+
+[node name="Asteroid" parent="." instance=ExtResource("3_4uphc")]
+position = Vector2(-1, -105)
+scale = Vector2(0.996396, 1)
+
+[node name="Asteroid2" parent="." instance=ExtResource("3_4uphc")]
+position = Vector2(-138, 59)
+
+[node name="Asteroid3" parent="." instance=ExtResource("3_4uphc")]
+position = Vector2(128, 56)
+
+[node name="Player" parent="." instance=ExtResource("4_kgwvj")]

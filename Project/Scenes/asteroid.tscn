@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://drqqsn44i8lko"]
 
-[ext_resource type="Script" path="res://asteroid.gd" id="1_ham86"]
+[ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_ham86"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hp3lf"]
 
