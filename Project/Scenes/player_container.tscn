@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://caav5508m325i"]
+
+[ext_resource type="Script" path="res://Scripts/player_container.gd" id="1_qc8b5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcw8m"]
+size = Vector2(336.267, 6.14838)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mpvu"]
+size = Vector2(35.6656, 21.358)
+
+[node name="PlayerContainer" type="Node" node_paths=PackedStringArray("spawns")]
+script = ExtResource("1_qc8b5")
+spawns = [NodePath("SpawnPointUpper"), NodePath("SpawnPointLeft"), NodePath("SpawnPointRight"), NodePath("SpawnPointLower")]
+
+[node name="SpawnPointUpper" type="Area2D" parent="."]
+position = Vector2(1, -675)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPointUpper"]
+scale = Vector2(4.85711, 32.3431)
+shape = SubResource("RectangleShape2D_tcw8m")
+
+[node name="SpawnPointLower" type="Area2D" parent="."]
+position = Vector2(1, 729)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPointLower"]
+scale = Vector2(4.85711, 32.3431)
+shape = SubResource("RectangleShape2D_tcw8m")
+
+[node name="SpawnPointLeft" type="Area2D" parent="."]
+position = Vector2(-1112, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPointLeft"]
+scale = Vector2(4.59759, 54.4991)
+shape = SubResource("RectangleShape2D_0mpvu")
+
+[node name="SpawnPointRight" type="Area2D" parent="."]
+position = Vector2(1170, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPointRight"]
+scale = Vector2(4.59759, 54.4991)
+shape = SubResource("RectangleShape2D_0mpvu")
