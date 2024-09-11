@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://qvjpro8hvj0p" path="res://Assets/stars.png" id="1_56d3n"]
 [ext_resource type="PackedScene" uid="uid://c8tjpkwgpjq7e" path="res://Scenes/asteroid_manager.tscn" id="2_yyxbx"]
 [ext_resource type="PackedScene" uid="uid://drqqsn44i8lko" path="res://Scenes/asteroid.tscn" id="3_4uphc"]
-[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/player_controller.tscn" id="4_kgwvj"]
 [ext_resource type="PackedScene" uid="uid://caav5508m325i" path="res://Scenes/player_container.tscn" id="5_1ldun"]
+[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/player.tscn" id="6_pdnlj"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_5uvxf")
@@ -105,5 +105,4 @@ scale = Vector2(0.996396, 1)
 
 [node name="PlayerContainer" parent="." instance=ExtResource("5_1ldun")]
 
-[node name="Player" parent="PlayerContainer" instance=ExtResource("4_kgwvj")]
-position = Vector2(1, 0)
+[node name="CharacterBody2D" parent="PlayerContainer" instance=ExtResource("6_pdnlj")]

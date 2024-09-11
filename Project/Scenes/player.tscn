@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dn0okr010def6"]
+[gd_scene load_steps=16 format=3 uid="uid://dn0okr010def6"]
 
 [ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
 [ext_resource type="Texture2D" uid="uid://d1jgckdungpo3" path="res://Assets/AstroSpriteSheet_IdleWalk_V3_PIXEL.png" id="2_cohs5"]
@@ -171,8 +171,12 @@ _data = {
 "space_walk_up": SubResource("Animation_68qkb")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwgny"]
+bg_color = Color(0.280174, 0.711268, 1.92523e-07, 1)
+
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite", "label")]
 scale = Vector2(0.5, 0.5)
+collision_mask = 3
 script = ExtResource("1_cb7iq")
 myBody = NodePath(".")
 sprite = NodePath("Sprite2D")
@@ -226,3 +230,25 @@ action  = R"
 label_settings = ExtResource("3_o725q")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="OxygenModule" type="Node2D" parent="."]
+position = Vector2(-20, -110)
+
+[node name="OxygenProgressBar" type="ProgressBar" parent="OxygenModule"]
+unique_name_in_owner = true
+offset_left = -72.0
+offset_top = 232.0
+offset_right = 126.0
+offset_bottom = 268.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/fill = SubResource("StyleBoxFlat_uwgny")
+max_value = 1000.0
+value = 1000.0
+
+[node name="DistanceTravelledLabel" type="Label" parent="OxygenModule"]
+unique_name_in_owner = true
+offset_left = -74.0
+offset_top = 278.0
+offset_right = 134.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 16

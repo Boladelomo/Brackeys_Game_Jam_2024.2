@@ -7,13 +7,15 @@ const ASTEROID_AMOUNT := 50
 const MAX_SHELTER_AMOUNT := 5
 const MIN_SHELTER_RADIUS := 75.0
 
+@export var min_radius := 10.0
+@export	var max_radius := 125.0
+
 @onready var asteroids : Array[Area2D] : get = _get_asteroids
 #@onready var shelter_pool : Array[Area2D] : get = _get_asteroids
 
 func _get_asteroids():
 	return asteroids
 
-#TODO: list of asteroids of different sizes
 
 #TODO: setting asteroid speed, rotation and spawn position, 
 
@@ -25,9 +27,8 @@ func _ready():
 	print("Hello")
 
 func fill_asteroid_array(array, length):
-	for i in length:
+	for i in length - 1:
 		array[i] = asteroid.instantiate()
-		print("asteroid " + str(i) + " radius = ")
 		randomize_asteroid_values(array[i])
 
 func randomize_asteroid_values(asteroid):
@@ -37,9 +38,11 @@ func randomize_asteroid_values(asteroid):
 	for a in asteroids:
 		if collider.shape.radius >= MIN_SHELTER_RADIUS:
 			shelter_count += 1
+
 	if shelter_count >= MAX_SHELTER_AMOUNT:
-		collider.shape.radius = randf_range(asteroid.min_radius, asteroid.min_radius * 2.0)
+		#min to 2xmin size for non-shelter asteroids, TODO: needs playtesting
+		asteroid._set_radius(randf_range(min_radius, min_radius * 2.0))
 	else:
 	#if within shelter limit
-		collider.shape.radius = randf_range(asteroid.min_radius, asteroid.max_radius)
-	print(collider.shape.radius)
+		asteroid._set_radius(randf_range(min_radius, max_radius))
+	print(asteroid._get_radius())
