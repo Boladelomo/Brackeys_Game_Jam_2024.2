@@ -2,15 +2,16 @@ extends Node
 
 enum AsteroidClass { MICRO, PROJECTILE, SHELTER }
 
-const asteroid = preload("res://asteroid.tscn")
+var asteroid = preload("res://Scenes/asteroid.tscn")
 const ASTEROID_AMOUNT := 50
-const SHELTER_AMOUUNT := 5
+const MAX_SHELTER_AMOUNT := 5
+const MIN_SHELTER_RADIUS := 75.0
 
-@onready var asteroids : Array[Area2D]
-@onready var shelter_pool : Array[Area2D] : get = _get_asteroids
+@onready var asteroids : Array[Area2D] : get = _get_asteroids
+#@onready var shelter_pool : Array[Area2D] : get = _get_asteroids
 
 func _get_asteroids():
-	pass
+	return asteroids
 
 #TODO: list of asteroids of different sizes
 
@@ -20,9 +21,24 @@ func _get_asteroids():
 
 func _ready():
 	asteroids.resize(ASTEROID_AMOUNT)
+	fill_asteroid_array(asteroids, ASTEROID_AMOUNT)
 	print("Hello")
 
 func fill_asteroid_array(array, length):
 	for i in length:
-		#array[i] = 
-		pass
+		array[i] = asteroid.instantiate()
+		print("asteroid " + str(i) + " radius = ")
+		randomize_asteroid_values(array[i])
+
+func randomize_asteroid_values(asteroid):
+	#count large asteroids and prevent more than SHELTER_AMOUNT from spawning
+	var shelter_count := 0
+	for a in asteroids:
+		if a.collider.shape.radius >= MIN_SHELTER_RADIUS:
+			shelter_count += 1
+	if shelter_count >= MAX_SHELTER_AMOUNT:
+		asteroid.collider.shape.radius = randf_range(asteroid.min_radius, asteroid.min_radius * 2.0)
+	else:
+	#if within shelter limit
+		asteroid.collider.shape.radius = randf_range(asteroid.min_radius, asteroid.max_radius)
+	print(asteroid.collider.shape.radius)

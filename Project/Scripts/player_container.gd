@@ -6,7 +6,7 @@ func _get_spawn_points():
 	var index := 0
 	for spawn in get_children(): 
 		spawns.insert(index, spawn)
-		++index
+		index += 1
 		if index > get_child_count():
 			index = get_child_count()
 	print("total asteroid spawns: ")

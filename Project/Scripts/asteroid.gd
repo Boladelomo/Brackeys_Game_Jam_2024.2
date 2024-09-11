@@ -2,8 +2,10 @@ extends Area2D
 
 enum AsteroidState { EMPTY, USED, DAMAGED }
 
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var collider: CollisionShape2D = $CollisionShape2D
 @export var safe_radius := 75.0
+@export var min_radius := 8.0
+@export	var max_radius := 95.0
 
 var safe_color := Color.AQUAMARINE
 var empty_color := Color.WHITE
@@ -16,10 +18,10 @@ var target_position : Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	collision_shape_2d.shape.radius = safe_radius
-	collision_shape_2d.position = position
+	collider.shape.radius = safe_radius
+	collider.position = position
 	queue_redraw()
-	#print(collision_shape_2d.shape.radius)
+	#print(collider.shape.radius)
 	#print(position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,18 +37,16 @@ func _draw() -> void:
 	#if collided and target_position:
 		#draw_line(target_position, position, Color.RED, 4.0, false)
 
-#TODO: change logic for a fully encased player, maybe a smaller inner collider after cracking the asteroid with the tool
+#TODO: change to full overlap of player collider (inside asteroid)
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player": #TODO: use another way to ID the player, avoid hardcoded strings
-		#print("player X: " + str(body.position.x) + ", player Y: " + str(body.position.y))
-		#print("asteroid X: " + str(position.x) + ", asteroid Y: " + str(position.y))
+	if body is CharacterBody2D:
 		current_color = safe_color
 		collided = true
 		target_position = body.position
 	queue_redraw()
 
 func _on_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
+	if body is CharacterBody2D:
 		current_color = empty_color
 		collided = false
 	queue_redraw()
