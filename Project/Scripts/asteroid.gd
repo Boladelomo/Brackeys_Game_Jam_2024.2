@@ -18,7 +18,7 @@ var target_position : Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	collider.shape.radius = safe_radius
+	#collider.shape.radius = safe_radius
 	collider.position = position
 	queue_redraw()
 	#print(collider.shape.radius)

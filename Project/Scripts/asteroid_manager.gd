@@ -33,12 +33,13 @@ func fill_asteroid_array(array, length):
 func randomize_asteroid_values(asteroid):
 	#count large asteroids and prevent more than SHELTER_AMOUNT from spawning
 	var shelter_count := 0
+	var collider = asteroid.get_node("CollisionShape2D")
 	for a in asteroids:
-		if a.collider.shape.radius >= MIN_SHELTER_RADIUS:
+		if collider.shape.radius >= MIN_SHELTER_RADIUS:
 			shelter_count += 1
 	if shelter_count >= MAX_SHELTER_AMOUNT:
-		asteroid.collider.shape.radius = randf_range(asteroid.min_radius, asteroid.min_radius * 2.0)
+		collider.shape.radius = randf_range(asteroid.min_radius, asteroid.min_radius * 2.0)
 	else:
 	#if within shelter limit
-		asteroid.collider.shape.radius = randf_range(asteroid.min_radius, asteroid.max_radius)
-	print(asteroid.collider.shape.radius)
+		collider.shape.radius = randf_range(asteroid.min_radius, asteroid.max_radius)
+	print(collider.shape.radius)
