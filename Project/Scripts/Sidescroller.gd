@@ -8,7 +8,7 @@ func _get_player_collider():
 	return collider
 
 
-#region OXYGEN LOGIC VARIABLES
+#OXYGEN LOGIC VARIABLES  - START REGION
 @onready var oxygen_bar = %OxygenProgressBar
 @onready var distance_lable = %DistanceTravelledLabel
 var initial_position = Vector2(0, 0)
@@ -19,7 +19,7 @@ var is_on_safe_area:bool = false
 @export var oxygen_idle_consumption:float = 0.1
 @export var oxygen_recovery_rate:float = 0.5
 @export var idle_move_tolerance:float = 0.2
-#endregion
+#OXYGEN LOGIC VARIABLES - END REGION
 
 @onready var jetpack_fire:Sprite2D = %JetFire
 var is_facing_left = true

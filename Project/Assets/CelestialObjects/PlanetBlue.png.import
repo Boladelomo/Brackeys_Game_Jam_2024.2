@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ecw26q5vy3sj"
-path="res://.godot/imported/booster.png-5e8550b12b0668cb9499d2fe8b6a287e.ctex"
+uid="uid://cgqn3duc43w8x"
+path="res://.godot/imported/PlanetBlue.png-1b9622b4fe109d105d71d2a7fefd4a01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/booster.png"
-dest_files=["res://.godot/imported/booster.png-5e8550b12b0668cb9499d2fe8b6a287e.ctex"]
+source_file="res://Assets/CelestialObjects/PlanetBlue.png"
+dest_files=["res://.godot/imported/PlanetBlue.png-1b9622b4fe109d105d71d2a7fefd4a01.ctex"]
 
 [params]
 

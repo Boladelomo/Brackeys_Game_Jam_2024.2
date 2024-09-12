@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://3n10vjk5eo50"]
+[gd_scene load_steps=9 format=3 uid="uid://3n10vjk5eo50"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_5uvxf"]
 [ext_resource type="Texture2D" uid="uid://qvjpro8hvj0p" path="res://Assets/stars.png" id="1_56d3n"]
-[ext_resource type="PackedScene" uid="uid://c8tjpkwgpjq7e" path="res://Scenes/asteroid_manager.tscn" id="2_yyxbx"]
 [ext_resource type="PackedScene" uid="uid://drqqsn44i8lko" path="res://Scenes/asteroid.tscn" id="3_4uphc"]
 [ext_resource type="PackedScene" uid="uid://caav5508m325i" path="res://Scenes/player_container.tscn" id="5_1ldun"]
-[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/player.tscn" id="6_pdnlj"]
+[ext_resource type="Resource" uid="uid://ckdlpgs386a60" path="res://Resources/asteroid_small.tres" id="5_7wato"]
+[ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/player.tscn" id="6_qf0uy"]
+[ext_resource type="Resource" uid="uid://bdjasxewmgt4m" path="res://Resources/asteroid_large.tres" id="6_yjwqj"]
+[ext_resource type="PackedScene" uid="uid://cv8jrbs2of2yt" path="res://Scenes/asteroid_spawn_manager.tscn" id="8_30ed2"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_5uvxf")
@@ -70,7 +72,7 @@ position = Vector2(936, 340)
 texture = ExtResource("1_56d3n")
 
 [node name="Stars14" type="Sprite2D" parent="Background"]
-position = Vector2(296, 342)
+position = Vector2(269, 342)
 texture = ExtResource("1_56d3n")
 
 [node name="Stars15" type="Sprite2D" parent="Background"]
@@ -81,34 +83,35 @@ texture = ExtResource("1_56d3n")
 position = Vector2(269, 765)
 texture = ExtResource("1_56d3n")
 
-[node name="AsteroidManager" parent="." instance=ExtResource("2_yyxbx")]
-
 [node name="Asteroid" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(-1, -105)
 scale = Vector2(0.996396, 1)
-safe_radius = 150.0
 
 [node name="Asteroid2" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(-138, 59)
-safe_radius = 225.0
+asteroid_class = ExtResource("5_7wato")
 
 [node name="Asteroid3" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(157, 111)
-safe_radius = 40.0
+asteroid_class = ExtResource("6_yjwqj")
 
 [node name="Asteroid4" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(-575, -318)
-safe_radius = 150.0
+asteroid_class = ExtResource("5_7wato")
 
 [node name="Asteroid5" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(572, 320)
-safe_radius = 150.0
+asteroid_class = ExtResource("6_yjwqj")
 
 [node name="Asteroid6" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(352, 202)
 scale = Vector2(0.996396, 1)
-safe_radius = 86.0
+asteroid_class = ExtResource("6_yjwqj")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("5_1ldun")]
 
-[node name="CharacterBody2D" parent="PlayerContainer" instance=ExtResource("6_pdnlj")]
+[node name="CharacterBody2D" parent="PlayerContainer" instance=ExtResource("6_qf0uy")]
+scale = Vector2(0.5, 0.5)
+
+[node name="AsteroidSpawnManager" parent="." instance=ExtResource("8_30ed2")]
+spawn_frequency_timer = 3

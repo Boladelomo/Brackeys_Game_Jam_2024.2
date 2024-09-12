@@ -1,17 +1,17 @@
 [gd_scene load_steps=23 format=3 uid="uid://dn0okr010def6"]
 
 [ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
-[ext_resource type="Texture2D" uid="uid://13otwl7o7he3" path="res://Assets/AstroSpriteSheet_DrillAll_exportV3.png" id="2_4fjg4"]
+[ext_resource type="Texture2D" uid="uid://0jfaux8yfcs8" path="res://Assets/AstroSpriteSheet_DrillAll_exportV3.png" id="2_4fjg4"]
 [ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_o725q"]
-[ext_resource type="Texture2D" uid="uid://dejbx48eoqfyx" path="res://Assets/booster.png" id="4_xy43o"]
-[ext_resource type="Texture2D" uid="uid://bsiwkjf0pq6bf" path="res://Assets/jetpackFire.png" id="5_jcvck"]
-[ext_resource type="Texture2D" uid="uid://clwsaj7abhvj4" path="res://Assets/Shadow.png" id="6_8xhlf"]
-[ext_resource type="Texture2D" uid="uid://pp0647a6j6l" path="res://Assets/DrillwithGunv6.png" id="7_d25op"]
-[ext_resource type="Texture2D" uid="uid://bdtotuyo5igll" path="res://Assets/hand2.png" id="7_p6ck0"]
-[ext_resource type="Script" path="res://Scripts/gun_drill.gd" id="8_1rij8"]
+[ext_resource type="Texture2D" uid="uid://ecw26q5vy3sj" path="res://Assets/booster.png" id="4_xy43o"]
+[ext_resource type="Texture2D" uid="uid://dk5m2n2ft55n8" path="res://Assets/jetpackFire.png" id="5_jcvck"]
+[ext_resource type="Texture2D" uid="uid://s1lsshcirsqh" path="res://Assets/Shadow.png" id="6_8xhlf"]
+[ext_resource type="Texture2D" uid="uid://bwl8taytxu8oe" path="res://Assets/DrillwithGunv6.png" id="7_d25op"]
+[ext_resource type="Texture2D" uid="uid://bbudnhmqt6dyu" path="res://Assets/hand2.png" id="7_p6ck0"]
+[ext_resource type="Script" path="res://Scenes/gun_drill.gd" id="7_q1nhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
-size = Vector2(105, 200)
+size = Vector2(94, 209)
 
 [sub_resource type="Animation" id="Animation_f18k0"]
 length = 0.001
@@ -1303,8 +1303,7 @@ hframes = 5
 vframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2.5, 15)
+position = Vector2(-3, 10.5)
 shape = SubResource("RectangleShape2D_y2p2d")
 debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
 
@@ -1400,7 +1399,7 @@ texture = ExtResource("6_8xhlf")
 visible = false
 position = Vector2(-8, 20)
 rotation = -0.486947
-script = ExtResource("8_1rij8")
+script = ExtResource("7_q1nhi")
 
 [node name="HandSprite" type="Sprite2D" parent="GunDrill"]
 texture_filter = 1

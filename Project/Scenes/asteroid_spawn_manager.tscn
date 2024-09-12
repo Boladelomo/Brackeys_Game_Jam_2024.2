@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8jrbs2of2yt"]
+
+[ext_resource type="Script" path="res://Scenes/asteroid_spawn_manager.gd" id="1_gu48g"]
+
+[sub_resource type="Curve2D" id="Curve2D_hjesu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1350, -776, 0, 0, 0, 0, -1027, -776, 0, 0, 0, 0, 342, -803, 0, 0, 0, 0, 1442, -816, 0, 0, 0, 0, 2031, -686, 0, 0, 0, 0, 2197, 576, 0, 0, 0, 0, 2208, 1551, 0, 0, 0, 0, 1679, 1833, 0, 0, 0, 0, 817, 1979, 0, 0, 0, 0, -231, 1803, 0, 0, 0, 0, -876, 1375, 0, 0, 0, 0, -1078, 820, 0, 0, 0, 0, -1141, 250, 0, 0, 0, 0, -1179, -316, 0, 0, 0, 0, -1165, -654, 0, 0, 0, 0, -1365, -783, 0, 0, 0, 0, -1350, -776)
+}
+point_count = 17
+
+[node name="AsteroidSpawnManager" type="Node2D"]
+script = ExtResource("1_gu48g")
+
+[node name="SpawnAreaScaleMarker" type="Marker2D" parent="."]
+position = Vector2(86, 52)
+
+[node name="Path2D" type="Path2D" parent="SpawnAreaScaleMarker"]
+unique_name_in_owner = true
+position = Vector2(-571, -453)
+curve = SubResource("Curve2D_hjesu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="SpawnAreaScaleMarker/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-1350, -776)
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
