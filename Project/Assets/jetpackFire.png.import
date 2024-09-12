@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wvo2rf304us3"
-path="res://.godot/imported/AstroSpriteSheet_IdleWalk.png-bf6fa281bb79d0ec2dc60b899f938588.ctex"
+uid="uid://bsiwkjf0pq6bf"
+path="res://.godot/imported/jetpackFire.png-8f1194075ab16597c74fd521c3f12ee3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/AstroSpriteSheet_IdleWalk.png"
-dest_files=["res://.godot/imported/AstroSpriteSheet_IdleWalk.png-bf6fa281bb79d0ec2dc60b899f938588.ctex"]
+source_file="res://Assets/jetpackFire.png"
+dest_files=["res://.godot/imported/jetpackFire.png-8f1194075ab16597c74fd521c3f12ee3.ctex"]
 
 [params]
 

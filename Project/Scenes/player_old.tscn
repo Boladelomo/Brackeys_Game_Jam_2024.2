@@ -1,0 +1,254 @@
+[gd_scene load_steps=16 format=3 uid="uid://dn0okr010def6"]
+
+[ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
+[ext_resource type="Texture2D" uid="uid://13otwl7o7he3" path="res://Assets/AstroSpriteSheet_DrillAll_exportV3.png" id="2_icdhg"]
+[ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_o725q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
+size = Vector2(105, 200)
+
+[sub_resource type="Animation" id="Animation_30d3j"]
+resource_name = "Idle_breath_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [15, 19]
+}
+
+[sub_resource type="Animation" id="Animation_uqihm"]
+resource_name = "Idle_breath_left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10, 14]
+}
+
+[sub_resource type="Animation" id="Animation_6xs78"]
+resource_name = "Idle_breath_right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+
+[sub_resource type="Animation" id="Animation_8t8cl"]
+resource_name = "Idle_breath_up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5, 9]
+}
+
+[sub_resource type="Animation" id="Animation_f18k0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vows8"]
+resource_name = "space_walk_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [35, 39]
+}
+
+[sub_resource type="Animation" id="Animation_trt7w"]
+resource_name = "space_walk_left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30, 34]
+}
+
+[sub_resource type="Animation" id="Animation_8u8i3"]
+resource_name = "space_walk_right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [20, 24]
+}
+
+[sub_resource type="Animation" id="Animation_68qkb"]
+resource_name = "space_walk_up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [25, 29]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ogsv8"]
+_data = {
+"Idle_breath_down": SubResource("Animation_30d3j"),
+"Idle_breath_left": SubResource("Animation_uqihm"),
+"Idle_breath_right": SubResource("Animation_6xs78"),
+"Idle_breath_up": SubResource("Animation_8t8cl"),
+"RESET": SubResource("Animation_f18k0"),
+"space_walk_down": SubResource("Animation_vows8"),
+"space_walk_left": SubResource("Animation_trt7w"),
+"space_walk_right": SubResource("Animation_8u8i3"),
+"space_walk_up": SubResource("Animation_68qkb")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwgny"]
+bg_color = Color(0.280174, 0.711268, 1.92523e-07, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite", "label")]
+scale = Vector2(0.5, 0.5)
+collision_mask = 3
+script = ExtResource("1_cb7iq")
+myBody = NodePath(".")
+sprite = NodePath("Sprite2D")
+label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_icdhg")
+hframes = 5
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 15)
+shape = SubResource("RectangleShape2D_y2p2d")
+debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -76.0
+offset_right = 63.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("3_o725q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ogsv8")
+}
+autoplay = "Idle_breath_right"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hints" type="Label" parent="Camera2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 184.0
+offset_top = -328.0
+offset_right = 579.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "movement = WASD/d-pad
+boost  = spacebar
+action  = R"
+label_settings = ExtResource("3_o725q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OxygenModule" type="Node2D" parent="."]
+position = Vector2(-20, -110)
+
+[node name="OxygenProgressBar" type="ProgressBar" parent="OxygenModule"]
+unique_name_in_owner = true
+offset_left = -72.0
+offset_top = 232.0
+offset_right = 126.0
+offset_bottom = 268.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/fill = SubResource("StyleBoxFlat_uwgny")
+max_value = 1000.0
+value = 1000.0
+
+[node name="DistanceTravelledLabel" type="Label" parent="OxygenModule"]
+unique_name_in_owner = true
+offset_left = -74.0
+offset_top = 278.0
+offset_right = 134.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 16

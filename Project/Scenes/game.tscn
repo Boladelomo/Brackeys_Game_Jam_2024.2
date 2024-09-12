@@ -86,22 +86,28 @@ texture = ExtResource("1_56d3n")
 [node name="Asteroid" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(-1, -105)
 scale = Vector2(0.996396, 1)
+safe_radius = 150.0
 
 [node name="Asteroid2" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(-138, 59)
+safe_radius = 150.0
 
 [node name="Asteroid3" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(157, 111)
+safe_radius = 150.0
 
 [node name="Asteroid4" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(-575, -318)
+safe_radius = 150.0
 
 [node name="Asteroid5" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(572, 320)
+safe_radius = 150.0
 
 [node name="Asteroid6" parent="." instance=ExtResource("3_4uphc")]
 position = Vector2(352, 202)
 scale = Vector2(0.996396, 1)
+safe_radius = 150.0
 
 [node name="PlayerContainer" parent="." instance=ExtResource("5_1ldun")]
 
