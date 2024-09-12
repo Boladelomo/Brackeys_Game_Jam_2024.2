@@ -1308,6 +1308,7 @@ shape = SubResource("RectangleShape2D_y2p2d")
 debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1317,6 +1318,7 @@ offset_right = 54.0
 offset_bottom = -97.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 24
 label_settings = ExtResource("3_o725q")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1328,8 +1330,10 @@ libraries = {
 autoplay = "jetpack_right"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
 
 [node name="Hints" type="Label" parent="Camera2D"]
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1339,6 +1343,7 @@ offset_right = 579.0
 offset_bottom = -181.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 24
 text = "movement = WASD/d-pad
 boost  = spacebar
 action  = R"
@@ -1351,22 +1356,24 @@ position = Vector2(2, -84)
 
 [node name="OxygenProgressBar" type="ProgressBar" parent="OxygenModule"]
 unique_name_in_owner = true
-offset_left = -100.0
-offset_top = 179.0
-offset_right = 98.0
-offset_bottom = 206.0
-theme_override_font_sizes/font_size = 16
+texture_filter = 2
+offset_left = -147.0
+offset_top = 194.0
+offset_right = 149.0
+offset_bottom = 242.0
+theme_override_font_sizes/font_size = 24
 theme_override_styles/fill = SubResource("StyleBoxFlat_uwgny")
 max_value = 1000.0
 value = 1000.0
 
 [node name="DistanceTravelledLabel" type="Label" parent="OxygenModule"]
 unique_name_in_owner = true
-offset_left = -104.0
-offset_top = 212.0
-offset_right = 104.0
-offset_bottom = 254.0
-theme_override_font_sizes/font_size = 16
+texture_filter = 2
+offset_left = -136.0
+offset_top = 249.0
+offset_right = 147.0
+offset_bottom = 323.0
+theme_override_font_sizes/font_size = 24
 
 [node name="JetPack" type="Node2D" parent="."]
 unique_name_in_owner = true

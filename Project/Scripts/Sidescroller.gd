@@ -161,15 +161,15 @@ func player_left_safe_area():
 
 func _process(delta): 	
 	label.text = "thrustX: " + str(thrust_vector.x) + " thrustY: " + str(thrust_vector.y)
-	#capping FPS logic
-	var fps = Engine.get_frames_per_second()
-	var lerpInterval = direction / fps
-	var lerpPosition = global_transform.origin + lerpInterval
+	# #capping FPS logic
+	# var fps = Engine.get_frames_per_second()
+	# var lerpInterval = direction / fps
+	# var lerpPosition = global_transform.origin + lerpInterval
 
-	if fps > 30:
-		sprite.global_transform.origin = sprite.global_transform.origin.lerp(lerpPosition, 20 * delta)
-	else :
-		sprite.global_transform = global_transform
+	# if fps > 30:
+	# 	sprite.global_transform.origin = sprite.global_transform.origin.lerp(lerpPosition, 20 * delta)
+	# else :
+	# 	sprite.global_transform = global_transform
 
 func boost():
 	velocity.x += boost_thrust * Input.get_axis("left", "right")
