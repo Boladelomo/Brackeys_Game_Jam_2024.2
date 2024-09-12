@@ -8,11 +8,10 @@ func _ready() -> void:
 	deactivate_drilling_gun(true)
 	gun_hitbox_area.area_entered.connect(on_gun_hitbox_area_entered)
 
-#TODO: change logic so aoe collision checks aren't done every frame, signals/events
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if is_drillgun_active:
-		monitor_for_drill_asteroids()
+	monitor_for_drill_asteroids()
 
 
 func monitor_for_drill_asteroids() -> void:

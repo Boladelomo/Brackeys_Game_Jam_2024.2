@@ -8,4 +8,3 @@ enum asteroid_group_sizes{LARGE, MEDIUM, SMALL}
 @export var sprite_texture : Texture2D
 var sprite_scale : float
 var asteroid_radius : float
-

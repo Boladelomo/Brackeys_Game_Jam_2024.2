@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://s1lsshcirsqh" path="res://Assets/Shadow.png" id="6_8xhlf"]
 [ext_resource type="Texture2D" uid="uid://bwl8taytxu8oe" path="res://Assets/DrillwithGunv6.png" id="7_d25op"]
 [ext_resource type="Texture2D" uid="uid://bbudnhmqt6dyu" path="res://Assets/hand2.png" id="7_p6ck0"]
-[ext_resource type="Script" path="res://Scenes/gun_drill.gd" id="7_q1nhi"]
+[ext_resource type="Script" path="res://Scripts/gun_drill.gd" id="7_q1nhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2p2d"]
 size = Vector2(94, 209)
