@@ -2,6 +2,7 @@ extends Area2D
 
 enum AsteroidState { EMPTY, USED, DAMAGED }
 
+var is_being_drilled: bool = false
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var radius : get = _get_radius, set = _set_radius
 func _get_radius():
@@ -25,7 +26,6 @@ func _ready() -> void:
 	collider.shape.radius = _get_radius()
 	collider.position = position
 	queue_redraw()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
