@@ -8,9 +8,8 @@ size = Vector2(336.267, 6.14838)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mpvu"]
 size = Vector2(35.6656, 21.358)
 
-[node name="PlayerContainer" type="Node" node_paths=PackedStringArray("spawns")]
+[node name="PlayerContainer" type="Node"]
 script = ExtResource("1_qc8b5")
-spawns = [NodePath("SpawnPointUpper"), NodePath("SpawnPointLeft"), NodePath("SpawnPointRight"), NodePath("SpawnPointLower")]
 
 [node name="SpawnPointUpper" type="Area2D" parent="."]
 position = Vector2(1, -675)
