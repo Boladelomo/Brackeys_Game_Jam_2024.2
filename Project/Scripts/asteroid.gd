@@ -1,8 +1,6 @@
 @tool
 extends Area2D
 
-enum AsteroidState { EMPTY, USED, DAMAGED }
-
 @export var asteroid_class: AsteroidClassResource
 @onready var sprite_2d: Sprite2D = $Sprite2D
 var is_being_drilled: bool = false
@@ -18,10 +16,11 @@ var has_collider_shape:= false
 var collided:= false
 var collision_object : CharacterBody2D
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_asteroid_from_resource(asteroid_class)
-	# queue_redraw()
+
 
 func update_asteroid_from_resource(astro_resource) -> void:
 	var new_collider := CollisionShape2D.new()
@@ -54,6 +53,7 @@ func update_asteroid_size(asteroid_size) -> void:
 		1:sprite_2d.scale = Vector2(2, 2)
 		0:sprite_2d.scale = Vector2(2.5, 2.5)
 
+
 func update_asteroid_radius(asteroid_size) -> float:
 	match asteroid_size:
 		2:return 10.0
@@ -61,20 +61,17 @@ func update_asteroid_radius(asteroid_size) -> float:
 		0:return 70.0
 	return 0.0
 
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		collided = true
 		collision_object = body
 		if body.has_method("player_entered_safe_area"):
 			body.player_entered_safe_area()
-	queue_redraw()
 
-func check_player_overlap(player: CharacterBody2D) -> bool:
-	return false
-	
+
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		collided = false
 		if body.has_method("player_left_safe_area"):
 			body.player_left_safe_area()
-	queue_redraw()

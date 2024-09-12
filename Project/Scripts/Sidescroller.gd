@@ -53,7 +53,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-		#region: OXYGEN CONTROL CODE - START REGION
+	#region: OXYGEN CONTROL CODE - START REGION
 	initial_position = self.position 
 
 	move_and_slide()
@@ -159,8 +159,7 @@ func player_left_safe_area():
 	is_on_safe_area = false
 	printt("Left safe area")
 
-func _process(delta): 
-	
+func _process(delta): 	
 	label.text = "thrustX: " + str(thrust_vector.x) + " thrustY: " + str(thrust_vector.y)
 	#capping FPS logic
 	var fps = Engine.get_frames_per_second()
@@ -173,10 +172,8 @@ func _process(delta):
 		sprite.global_transform = global_transform
 
 func boost():
-	#TODO: puff of gas?
 	velocity.x += boost_thrust * Input.get_axis("left", "right")
 	velocity.y += boost_thrust * Input.get_axis("up", "down")
-
 
 
 func stop_jet_pack() -> void:

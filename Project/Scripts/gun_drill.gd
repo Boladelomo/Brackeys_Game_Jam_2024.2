@@ -11,7 +11,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	monitor_for_drill_asteroids()
+	if is_drillgun_active:
+		monitor_for_drill_asteroids()
 
 
 func monitor_for_drill_asteroids() -> void:
