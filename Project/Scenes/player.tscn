@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dn0okr010def6"]
+[gd_scene load_steps=22 format=3 uid="uid://dn0okr010def6"]
 
 [ext_resource type="Script" path="res://Scripts/Sidescroller.gd" id="1_cb7iq"]
 [ext_resource type="Texture2D" uid="uid://0jfaux8yfcs8" path="res://Assets/AstroSpriteSheet_DrillAll_exportV3.png" id="2_4fjg4"]
 [ext_resource type="LabelSettings" uid="uid://bcnbvc0n6sxn5" path="res://UI/DebugLabel.tres" id="3_o725q"]
 [ext_resource type="Texture2D" uid="uid://ecw26q5vy3sj" path="res://Assets/booster.png" id="4_xy43o"]
 [ext_resource type="Texture2D" uid="uid://dk5m2n2ft55n8" path="res://Assets/jetpackFire.png" id="5_jcvck"]
-[ext_resource type="Texture2D" uid="uid://s1lsshcirsqh" path="res://Assets/Shadow.png" id="6_8xhlf"]
+[ext_resource type="Texture2D" uid="uid://s1lsshcirsqh" path="res://Assets/CelestialObjects/Shadow.png" id="6_8xhlf"]
 [ext_resource type="Texture2D" uid="uid://bwl8taytxu8oe" path="res://Assets/DrillwithGunv6.png" id="7_d25op"]
 [ext_resource type="Texture2D" uid="uid://bbudnhmqt6dyu" path="res://Assets/hand2.png" id="7_p6ck0"]
 [ext_resource type="Script" path="res://Scripts/gun_drill.gd" id="7_q1nhi"]
@@ -1283,18 +1283,56 @@ _data = {
 "jetpack_up": SubResource("Animation_8t8cl")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwgny"]
-bg_color = Color(0.280174, 0.711268, 1.92523e-07, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb6j8"]
 radius = 11.4018
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite", "label")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("myBody", "sprite")]
+z_index = 1
 collision_mask = 7
 script = ExtResource("1_cb7iq")
 myBody = NodePath(".")
 sprite = NodePath("Sprite2D")
-label = NodePath("Label")
+
+[node name="DebuggPlayerInfo" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebuggPlayerInfo"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_bottom = 33.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="DebuggPlayerInfo/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+label_settings = ExtResource("3_o725q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hints" type="Label" parent="DebuggPlayerInfo/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "movement = WASD/d-pad
+boost  = spacebar
+action  = Q"
+label_settings = ExtResource("3_o725q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DistanceTravelledLabel" type="Label" parent="DebuggPlayerInfo/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 2
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -1307,22 +1345,6 @@ position = Vector2(-3, 10.5)
 shape = SubResource("RectangleShape2D_y2p2d")
 debug_color = Color(0.959238, 8.66354e-07, 0.522733, 0.42)
 
-[node name="Label" type="Label" parent="."]
-texture_filter = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -142.0
-offset_right = 54.0
-offset_bottom = -97.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-label_settings = ExtResource("3_o725q")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ogsv8")
@@ -1330,50 +1352,14 @@ libraries = {
 autoplay = "jetpack_right"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.2, 0.2)
-
-[node name="Hints" type="Label" parent="Camera2D"]
-texture_filter = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 184.0
-offset_top = -328.0
-offset_right = 579.0
-offset_bottom = -181.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "movement = WASD/d-pad
-boost  = spacebar
-action  = R"
-label_settings = ExtResource("3_o725q")
-horizontal_alignment = 1
-vertical_alignment = 1
+zoom = Vector2(0.3, 0.3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
 
 [node name="OxygenModule" type="Node2D" parent="."]
 position = Vector2(2, -84)
-
-[node name="OxygenProgressBar" type="ProgressBar" parent="OxygenModule"]
-unique_name_in_owner = true
-texture_filter = 2
-offset_left = -147.0
-offset_top = 194.0
-offset_right = 149.0
-offset_bottom = 242.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/fill = SubResource("StyleBoxFlat_uwgny")
-max_value = 1000.0
-value = 1000.0
-
-[node name="DistanceTravelledLabel" type="Label" parent="OxygenModule"]
-unique_name_in_owner = true
-texture_filter = 2
-offset_left = -136.0
-offset_top = 249.0
-offset_right = 147.0
-offset_bottom = 323.0
-theme_override_font_sizes/font_size = 24
 
 [node name="JetPack" type="Node2D" parent="."]
 unique_name_in_owner = true

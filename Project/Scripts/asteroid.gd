@@ -4,9 +4,16 @@ class_name Asteroid
 @export var asteroid_class: AsteroidClassResource
 @onready var sprite_2d: Sprite2D = $Sprite2D
 var is_being_drilled: bool = false
+@onready var label_speed: Label = $LabelSpeed
 
-var move_speed: float = 10.0
+var move_speed: float = 10.0: 
+	get:
+		return move_speed
+	set(value):
+		move_speed = clamp(value, 0.0, asteroid_class.asteroid_speed) # (value
+
 var move_direction_vector := Vector2(0, 0)
+var is_part_of_storm:bool = false
 
 var safe_color := Color.AQUAMARINE
 var empty_color := Color.WHITE
@@ -21,13 +28,19 @@ var collision_object : CharacterBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_asteroid_from_resource(asteroid_class)
-	move_direction_vector.y = randi_range(-5, 5)
-	move_direction_vector.x = randi_range(-5, 5)
-	printt(move_direction_vector.y, move_direction_vector.x)
+	# if !is_part_of_storm:#Set a random world position. 
+	# 	move_direction_vector.y = randi_range(-1, 1)
+	# 	move_direction_vector.x = randi_range(-1, 1)
 
 func _physics_process(delta):
+	var velo = move_direction_vector * move_speed * delta
+	
 	global_position += move_direction_vector * move_speed * delta
 	
+	label_speed.text = "Move:Speed:" +str(round(move_speed)) + "  Velo:" +str(round(velo)) + "  Dir:" + str(round(move_direction_vector))
+
+# TODO: DEFINE A FUNCTION TO DESTOY THE ASTEROID
+# TODO: DEFINE A FUNCTION TO DESTOY THE OVER A PERIOD OF TIME (FOR PERFOMRNACE)
 
 func update_asteroid_from_resource(astro_resource) -> void:
 	var new_collider := CollisionShape2D.new()
@@ -42,6 +55,8 @@ func update_asteroid_from_resource(astro_resource) -> void:
 	new_collider.shape.radius = radius_var
 	move_speed = astro_resource.asteroid_speed
 
+	
+
 	for child in get_children():
 		if child is CollisionShape2D:
 			has_collider_shape = true
@@ -51,7 +66,7 @@ func update_asteroid_from_resource(astro_resource) -> void:
 	
 	new_collider.global_position = self.global_position
 
-	printt("SpawnedAsteroid", self.name, radius_var, move_speed, asteroid_size)
+	# printt("SpawnedAsteroid", self.name, radius_var, move_speed, asteroid_size)
 
 
 func update_asteroid_size(asteroid_size) -> void:

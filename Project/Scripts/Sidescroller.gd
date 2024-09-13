@@ -9,7 +9,6 @@ func _get_player_collider():
 
 
 #OXYGEN LOGIC VARIABLES  - START REGION
-@onready var oxygen_bar = %OxygenProgressBar
 @onready var distance_lable = %DistanceTravelledLabel
 var initial_position = Vector2(0, 0)
 var distance_traveled: float = 0.0
@@ -25,7 +24,7 @@ var is_on_safe_area:bool = false
 var is_facing_left = true
 
 #UI
-@export var label : Label
+@onready var label: Label = %Label
 
 #directionment
 var direction := Vector2.ZERO
@@ -38,8 +37,6 @@ const MAX_BOOSTED_SPEED := 160.0
 @export var boost_thrust := 40.0
 
 @onready var animation_player := $AnimationPlayer
-#Debugging
-@onready var debug_label = label
 
 func _ready() -> void:
 	stop_jet_pack()
@@ -69,7 +66,7 @@ func _physics_process(delta):
 		distance_traveled = 0 # Reset the distance traveled and allows to replesnish oxygem
 		# TODO: Add logic to only recover Oxygen when in certain condintions
 		if is_on_safe_area:
-			oxygen_bar.value += oxygen_recovery_rate + oxygen_recovery_rate
+			Globals.oxygen_changed.emit(oxygen_recovery_rate + oxygen_recovery_rate, false)
 	else:
 		is_moving = true
 	#endregion: OXYGEN CONTROL CODE - END REGION
@@ -148,7 +145,7 @@ func update_oxygen_bar(_distance):
 	else:
 		oxygen_depletion_value = oxygen_idle_consumption + oxygen_move_consumption
 
-	oxygen_bar.value -= oxygen_depletion_value
+	Globals.oxygen_changed.emit(oxygen_depletion_value, true)
 	#printt("Bar:", str(oxygen_bar.value), "Consumption:", str(oxygen_depletion_value) , "Moving:", str(is_moving))
 
 func player_entered_safe_area():
