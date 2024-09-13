@@ -56,7 +56,6 @@ func update_asteroid_from_resource(astro_resource) -> void:
 	var radius_var = update_asteroid_radius(asteroid_size)
 	new_collider.shape.radius = radius_var
 	move_speed = astro_resource.asteroid_speed
-
 	
 
 	for child in get_children():
