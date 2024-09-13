@@ -8,3 +8,4 @@ script = ExtResource("1_fnawl")
 asteroid_size = 0
 asteroid_speed = 0.1
 sprite_texture = ExtResource("2_hfr7g")
+is_cover = true

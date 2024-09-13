@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://drqqsn44i8lko"]
+[gd_scene load_steps=7 format=3 uid="uid://drqqsn44i8lko"]
 
 [ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_ham86"]
 [ext_resource type="Script" path="res://Scripts/asteroid_class.gd" id="2_4l28t"]
 [ext_resource type="Texture2D" uid="uid://d0h013bxlxioo" path="res://Assets/CelestialObjects/SmallRock2x.png" id="3_b5t70"]
+[ext_resource type="PackedScene" uid="uid://cyb7u1wjulano" path="res://Scenes/asteroid_death.tscn" id="4_38lu7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qr7h6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fseeb"]
 
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 7
+mass = 500.0
+gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_ham86")
@@ -28,6 +33,13 @@ shape = SubResource("CircleShape2D_qr7h6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_b5t70")
+
+[node name="AsteroidDeath" parent="." instance=ExtResource("4_38lu7")]
+
+[node name="CoverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoverArea"]
+shape = SubResource("CircleShape2D_fseeb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
