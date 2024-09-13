@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AsteroidClassResource" load_steps=3 format=3 uid="uid://bdjasxewmgt4m"]
+
+[ext_resource type="Script" path="res://Resources/asteroid_class.gd" id="1_fnawl"]
+[ext_resource type="Texture2D" uid="uid://g115vo8yd3lb" path="res://Assets/CelestialObjects/LargeRock2x.png" id="2_hfr7g"]
+
+[resource]
+script = ExtResource("1_fnawl")
+asteroid_size = 0
+asteroid_speed = 0.1
+sprite_texture = ExtResource("2_hfr7g")

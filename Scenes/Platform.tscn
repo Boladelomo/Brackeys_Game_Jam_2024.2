@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmfh0sx8qjjgq"]
+
+[ext_resource type="Texture2D" uid="uid://bbaq480gsxqyi" path="res://Assets/icon.svg" id="1_cuwo1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81ycy"]
+size = Vector2(112.687, 128)
+
+[node name="Platform" type="RigidBody2D"]
+gravity_scale = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(128, 0)
+scale = Vector2(5, 1)
+texture = ExtResource("1_cuwo1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(122.46, 2)
+scale = Vector2(5.76, 1)
+shape = SubResource("RectangleShape2D_81ycy")
+debug_color = Color(0.53008, 0.571115, 3.85046e-07, 0.42)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(768, 0)
+scale = Vector2(5, 1)
+texture = ExtResource("1_cuwo1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(762.46, 2)
+scale = Vector2(5.76, 1)
+shape = SubResource("RectangleShape2D_81ycy")
+debug_color = Color(0.53008, 0.571115, 3.85046e-07, 0.42)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-522, 0)
+scale = Vector2(5, 1)
+texture = ExtResource("1_cuwo1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(-527.54, 2)
+scale = Vector2(5.76, 1)
+shape = SubResource("RectangleShape2D_81ycy")
+debug_color = Color(0.53008, 0.571115, 3.85046e-07, 0.42)
