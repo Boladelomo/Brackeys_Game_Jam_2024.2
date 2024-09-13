@@ -1,5 +1,5 @@
 extends Area2D
-class_name Asteroid
+class_name AsteroidOLDER
 
 
 @export var asteroid_class: AsteroidClassResource
