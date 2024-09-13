@@ -27,6 +27,7 @@ func _ready() -> void:
 	# 	move_direction_vector.y = randi_range(-1, 1)
 	# 	move_direction_vector.x = randi_range(-1, 1)
 	set_gravity_scale(0.0)
+	print("asteroid size: " + str(asteroid_class.asteroid_size))
 	queue_redraw()
 
 func _physics_process(delta):
@@ -38,8 +39,18 @@ func _physics_process(delta):
 # TODO: DEFINE A FUNCTION TO DESTOY THE ASTEROID
 # TODO: DEFINE A FUNCTION THAT DISABLES ASTEROIDS FAR AWAY FROM PLAYER
 
-func take_damage(damage : int) ->void:
-	pass
+func take_damage(is_killing_blow : bool) ->void:
+	if is_killing_blow:
+		current_hp = 0
+	else:
+		current_hp -= 1
+		
+	if current_hp <= 0:
+		#TODO: 
+		#add debris spawn function: cut asteroid asset, 
+		#make pieces drift away from center, and fade away (alpha), no collsion
+		print("asteroid dead!")
+		queue_free()
 
 func update_asteroid_from_resource(astro_resource) -> void:
 	sprite_2d.texture = astro_resource.sprite_texture
@@ -49,7 +60,6 @@ func update_asteroid_from_resource(astro_resource) -> void:
 	var radius_var = update_asteroid_radius(asteroid_size)
 	collider.shape.radius = radius_var
 	move_speed = astro_resource.asteroid_speed	
-	print(radius_var)
 
 func update_asteroid_size(asteroid_size) -> void:
 	match asteroid_size:
@@ -66,23 +76,27 @@ func update_asteroid_radius(asteroid_size) -> float:
 	return 0.0
 
 func handle_asteroid_impact(other_size):
-	print("handle_asteroid_impact called")
-	
-	if other_size == update_asteroid_size:
+	#asteroids ignore same size, for now
+	if other_size == asteroid_class.asteroid_size:
+		print("same size collision")
 		return
 	if (other_size == AsteroidClassResource.asteroid_group_sizes.SMALL
 	 and asteroid_class.asteroid_size == AsteroidClassResource.asteroid_group_sizes.LARGE):
-		pass
-		
+		print("normal damage!")
+		take_damage(false)
+	elif (other_size == AsteroidClassResource.asteroid_group_sizes.MEDIUM
+	 and asteroid_class.asteroid_size == AsteroidClassResource.asteroid_group_sizes.LARGE):
+		print("killing blow!")
+		take_damage(true)
 
 func _on_body_entered(body: Node2D) -> void:
 	queue_redraw()
 	if body is CharacterBody2D:
-		print("player collision")
 		if body.has_method("player_entered_safe_area"):
 			body.player_entered_safe_area()
 	elif body is RigidBody2D:
-		print("asteroid on asteroid violence")
+		print(str(body.asteroid_class.asteroid_size))
+		print(str(asteroid_class.asteroid_size))
 		handle_asteroid_impact(body.asteroid_class.asteroid_size)
 		
 func _draw() -> void:
