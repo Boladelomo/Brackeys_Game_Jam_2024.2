@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://duu0hvvfr52w1"]
+[gd_scene load_steps=11 format=3 uid="uid://duu0hvvfr52w1"]
 
 [ext_resource type="Script" path="res://Scripts/astro_rigid_body.gd" id="1_03xjh"]
 [ext_resource type="Texture2D" uid="uid://d0h013bxlxioo" path="res://Assets/CelestialObjects/SmallRock2x.png" id="2_46trv"]
@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://bdjasxewmgt4m" path="res://Resources/asteroid_large.tres" id="3_p3mhe"]
 [ext_resource type="Shader" path="res://Scripts/fire_asteroid.gdshader" id="4_1cocf"]
 [ext_resource type="Texture2D" uid="uid://s1lsshcirsqh" path="res://Assets/CelestialObjects/Shadow.png" id="6_182cd"]
+[ext_resource type="AudioStream" uid="uid://boanney2fv1ho" path="res://Assets/bounce hard.ogg" id="7_i1y7o"]
+[ext_resource type="AudioStream" uid="uid://c30wfkuk3ugkp" path="res://Assets/impact small.ogg" id="8_0m330"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dtate"]
 friction = 0.1
@@ -78,6 +80,22 @@ position = Vector2(15.2295, 0.212272)
 scale = Vector2(0.128984, 0.328358)
 energy = 5.0
 texture = ExtResource("6_182cd")
+
+[node name="Large v Large" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_i1y7o")
+volume_db = 16.0
+pitch_scale = 0.18
+parameters/looping = false
+
+[node name="Small v Large" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0m330")
+volume_db = 8.0
+pitch_scale = 0.6
+
+[node name="Medium vs Large" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_i1y7o")
+volume_db = 15.0
+pitch_scale = 0.4
 
 [connection signal="body_entered" from="AstroArea2d" to="." method="_on_astro_area_2d_body_entered"]
 [connection signal="body_exited" from="AstroArea2d" to="." method="_on_astro_area_2d_body_exited"]

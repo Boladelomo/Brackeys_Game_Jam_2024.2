@@ -12,6 +12,10 @@ var move_speed: float = 100
 # var moveVector: Vector2
 # var origin_position: Vector2
 
+@onready var small_v_large: AudioStreamPlayer2D = $"Small v Large"
+@onready var medium_vs_large: AudioStreamPlayer2D = $"Medium vs Large"
+@onready var large_v_large: AudioStreamPlayer2D = $"Large v Large"
+
 var has_collider_shape:= false
 var collided:= false
 var collision_object : CharacterBody2D
@@ -72,6 +76,15 @@ func _on_astro_area_2d_body_entered(body:Node2D) -> void:
 		if "take_damage" in body:
 			body.take_damage(1)
 
+	if body is RigidBody2D and astro_resource.asteroid_size == AsteroidClassResource.asteroid_group_sizes.LARGE:
+		var size = body.astro_resource.asteroid_size
+		match size:
+			AsteroidClassResource.asteroid_group_sizes.SMALL:
+				small_v_large.play()
+			AsteroidClassResource.asteroid_group_sizes.MEDIUM:
+				medium_vs_large.play()
+			AsteroidClassResource.asteroid_group_sizes.LARGE:
+				large_v_large.play()
 
 func _on_astro_area_2d_body_exited(body:Node2D) -> void:
 	if body is CharacterBody2D and astro_resource.asteroid_size == 0:

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AsteroidClassResource" load_steps=3 format=3 uid="uid://ckdlpgs386a60"]
 
-[ext_resource type="Script" path="res://Resources/asteroid_class.gd" id="1_wbxyc"]
+[ext_resource type="Script" path="res://Scripts/asteroid_class.gd" id="1_wbxyc"]
 [ext_resource type="Texture2D" uid="uid://d0h013bxlxioo" path="res://Assets/CelestialObjects/SmallRock2x.png" id="2_qodvn"]
 
 [resource]

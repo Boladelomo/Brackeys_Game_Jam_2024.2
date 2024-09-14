@@ -8,6 +8,9 @@ class_name Asteroid
 var is_being_drilled: bool = false
 @onready var label_speed: Label = $LabelSpeed
 
+
+
+
 var move_speed: float = 10.0: 
 	get:
 		return move_speed

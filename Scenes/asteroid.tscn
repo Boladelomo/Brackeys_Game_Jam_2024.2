@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://drqqsn44i8lko"]
+[gd_scene load_steps=4 format=3 uid="uid://drqqsn44i8lko"]
 
 [ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_ham86"]
 [ext_resource type="Resource" uid="uid://ckdlpgs386a60" path="res://Resources/asteroid_small.tres" id="2_1yka1"]
 [ext_resource type="Texture2D" uid="uid://d0h013bxlxioo" path="res://Assets/CelestialObjects/SmallRock2x.png" id="3_b5t70"]
-[ext_resource type="AudioStream" uid="uid://boanney2fv1ho" path="res://Assets/bounce hard.ogg" id="4_6c67g"]
 
 [node name="Asteroid" type="Area2D" groups=["asteroid"]]
 collision_layer = 2
@@ -22,9 +21,6 @@ offset_top = -131.0
 offset_right = 185.0
 offset_bottom = -86.0
 theme_override_font_sizes/font_size = 32
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_6c67g")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
