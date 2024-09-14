@@ -23,13 +23,14 @@ var damage_color := Color.CRIMSON
 var current_color := empty_color
 
 var has_collider_shape:= false
-var collided:= false
 var collision_object : CharacterBody2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_asteroid_from_resource(asteroid_class)
+	if !(asteroid_class.rotation_enabled):
+		pass
 	# if !is_part_of_storm:#Set a random world position. 
 	# 	move_direction_vector.y = randi_range(-1, 1)
 	# 	move_direction_vector.x = randi_range(-1, 1)
@@ -88,7 +89,6 @@ func update_asteroid_radius(asteroid_size) -> float:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		collided = true
 		collision_object = body
 		if body.has_method("player_entered_safe_area"):
 			body.player_entered_safe_area()
@@ -96,6 +96,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		collided = false
 		if body.has_method("player_left_safe_area"):
 			body.player_left_safe_area()

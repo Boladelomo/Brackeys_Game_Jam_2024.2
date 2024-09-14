@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://box2ik83dxovm"]
+
+[ext_resource type="Script" path="res://Scripts/game_win_loose_manager.gd" id="1_n1fgh"]
+
+[node name="GameWinLooseManager" type="Node"]
+script = ExtResource("1_n1fgh")

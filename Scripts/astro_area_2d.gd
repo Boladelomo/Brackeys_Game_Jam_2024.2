@@ -1,12 +1,12 @@
 extends Area2D
-class_name AsteroidOLDER
-
-
+class_name AsteroidRigidArea2d
+@export var astro_rigid_body: RigidBody2D
 @export var asteroid_class: AsteroidClassResource
-@onready var rigid_body_collider: CollisionShape2D = %RigidBodyCollider
-@onready var sprite_2d: Sprite2D = $Sprite2D
+# @onready var rigid_body_collider: CollisionShape2D = %RigidBodyCollider
+@onready var sprite_2d: Sprite2D = %Sprite2D
 var is_being_drilled: bool = false
-@onready var label_speed: Label = $LabelSpeed
+# @onready var label_speed: Label = $LabelSpeed
+var has_collider_shape:= false
 
 var move_speed: float = 10.0: 
 	get:
@@ -22,9 +22,6 @@ var empty_color := Color.WHITE
 var damage_color := Color.CRIMSON
 var current_color := empty_color
 
-var has_collider_shape:= false
-var collided:= false
-var collision_object : CharacterBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,12 +31,12 @@ func _ready() -> void:
 	# 	move_direction_vector.y = randi_range(-1, 1)
 	# 	move_direction_vector.x = randi_range(-1, 1)
 
-func _physics_process(delta):
-	var velo = move_direction_vector * move_speed * delta
+# func _physics_process(delta):
+# 	var velo = move_direction_vector * move_speed * delta
 	
-	global_position += move_direction_vector * move_speed * delta
+# 	global_position += move_direction_vector * move_speed * delta
 	
-	label_speed.text = "Move:Speed:" +str(round(move_speed)) + "  Velo:" +str(round(velo)) + "  Dir:" + str(round(move_direction_vector))
+# 	label_speed.text = "Move:Speed:" +str(round(move_speed)) + "  Velo:" +str(round(velo)) + "  Dir:" + str(round(move_direction_vector))
 
 # TODO: DEFINE A FUNCTION TO DESTOY THE ASTEROID
 # TODO: DEFINE A FUNCTION TO DESTOY THE OVER A PERIOD OF TIME (FOR PERFOMRNACE)
@@ -55,8 +52,10 @@ func update_asteroid_from_resource(astro_resource) -> void:
 	new_collider.shape.radius = 0
 	var radius_var = update_asteroid_radius(asteroid_size)
 	new_collider.shape.radius = radius_var
-	move_speed = astro_resource.asteroid_speed
 
+	#TODO: AREA OF CHANGE - CHANGE TO NEW RIGID BODY SPEED
+	astro_rigid_body.move_speed = astro_resource.asteroid_speed
+	
 	
 
 	for child in get_children():
@@ -68,9 +67,6 @@ func update_asteroid_from_resource(astro_resource) -> void:
 	
 	new_collider.global_position = self.global_position
 
-	# printt("SpawnedAsteroid", self.name, radius_var, move_speed, asteroid_size)
-
-
 func update_asteroid_size(asteroid_size) -> void:
 	match asteroid_size:
 		2:sprite_2d.scale = Vector2(1, 1)
@@ -80,22 +76,7 @@ func update_asteroid_size(asteroid_size) -> void:
 
 func update_asteroid_radius(asteroid_size) -> float:
 	match asteroid_size:
-		2:return 30.0
+		2:return 40.0
 		1:return 100.0
 		0:return 160.0
 	return 0.0
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		collided = true
-		collision_object = body
-		if body.has_method("player_entered_safe_area"):
-			body.player_entered_safe_area()
-
-
-func _on_body_exited(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		collided = false
-		if body.has_method("player_left_safe_area"):
-			body.player_left_safe_area()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp03d561kkhkr"]
 
-[ext_resource type="Script" path="res://Scenes/storm_spawn_manager.gd" id="1_sstj1"]
+[ext_resource type="Script" path="res://Scripts/storm_spawn_manager.gd" id="1_sstj1"]
 
 [node name="StormSpawnManager" type="Node2D"]
 script = ExtResource("1_sstj1")

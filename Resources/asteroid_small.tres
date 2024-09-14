@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_wbxyc")
 asteroid_size = 2
-asteroid_speed = 250.0
+asteroid_speed = 750.0
 sprite_texture = ExtResource("2_qodvn")
+linear_velocity = Vector2(0, 0)
+rotation_enabled = true

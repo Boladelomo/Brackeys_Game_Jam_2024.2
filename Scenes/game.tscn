@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://3n10vjk5eo50"]
+[gd_scene load_steps=22 format=3 uid="uid://3n10vjk5eo50"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_5uvxf"]
 [ext_resource type="Texture2D" uid="uid://qvjpro8hvj0p" path="res://Assets/stars.png" id="1_56d3n"]
 [ext_resource type="LabelSettings" uid="uid://cyscxop5v00so" path="res://UI/LabelGeneral.tres" id="2_e5lxx"]
+[ext_resource type="PackedScene" uid="uid://cnikqj3ie6vv0" path="res://Scenes/heart_gui.tscn" id="2_oh405"]
 [ext_resource type="PackedScene" uid="uid://duu0hvvfr52w1" path="res://Scenes/astro_rigid_body.tscn" id="5_p4pt5"]
 [ext_resource type="Texture2D" uid="uid://cq0a7xklcfypx" path="res://Assets/CelestialObjects/Planet2_2x.png" id="6_gh8sj"]
 [ext_resource type="PackedScene" uid="uid://dn0okr010def6" path="res://Scenes/player.tscn" id="6_qf0uy"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://iy0upa1x60jo" path="res://Assets/CelestialObjects/Stars2_2x.png" id="10_mtpyc"]
 [ext_resource type="Texture2D" uid="uid://c766vqh4cn8xp" path="res://Assets/CelestialObjects/Stars3_2x.png" id="11_iyhnl"]
 [ext_resource type="Texture2D" uid="uid://dkkarsfm24twr" path="res://Assets/CelestialObjects/Planet3_2x.png" id="12_dhrkg"]
+[ext_resource type="PackedScene" uid="uid://box2ik83dxovm" path="res://Scenes/game_win_loose_manager.tscn" id="16_ii1m5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5yo4"]
 content_margin_left = 5.0
@@ -60,14 +62,15 @@ max_distance = 50.0
 
 [node name="PlayerStatsUI" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerStatsUI"]
-texture_filter = 2
-offset_left = 5.0
-offset_top = 1.0
-offset_right = 192.0
-offset_bottom = 22.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStatsUI"]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="PanelContainer" type="PanelContainer" parent="PlayerStatsUI/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerStatsUI/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="PanelPlayerStats" type="PanelContainer" parent="PlayerStatsUI/HBoxContainer/VBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -75,10 +78,10 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_p5yo4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStatsUI/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerStats"]
 layout_mode = 2
 
-[node name="LabelOxygen" type="Label" parent="PlayerStatsUI/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="LabelOxygen" type="Label" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerStats/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -86,9 +89,10 @@ theme_override_font_sizes/font_size = 8
 text = "Oxy(O2):"
 label_settings = ExtResource("2_e5lxx")
 
-[node name="UIOxygenBar" type="ProgressBar" parent="PlayerStatsUI/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="UIOxygenBar" type="ProgressBar" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerStats/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 10)
+visible = false
+custom_minimum_size = Vector2(80, 10)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -97,14 +101,14 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6el1a")
 max_value = 1000.0
 value = 1000.0
 
-[node name="LabelStormCount" type="Label" parent="PlayerStatsUI/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="LabelStormCount" type="Label" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerStats/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 8
 text = "Storms#:"
 label_settings = ExtResource("2_e5lxx")
 
-[node name="LabelStormNumber" type="Label" parent="PlayerStatsUI/VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="LabelStormNumber" type="Label" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerStats/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -112,21 +116,67 @@ theme_override_font_sizes/font_size = 8
 text = "00"
 label_settings = ExtResource("2_e5lxx")
 
+[node name="PanelPlayerLife" type="PanelContainer" parent="PlayerStatsUI/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p5yo4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerLife"]
+layout_mode = 2
+
+[node name="Hearts" type="Control" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerLife/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Heart" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerLife/HBoxContainer/Hearts" instance=ExtResource("2_oh405")]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 13.0
+offset_bottom = 16.0
+
+[node name="Heart2" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerLife/HBoxContainer/Hearts" instance=ExtResource("2_oh405")]
+layout_mode = 2
+offset_left = 17.0
+offset_right = 26.0
+offset_bottom = 16.0
+
+[node name="Heart3" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerLife/HBoxContainer/Hearts" instance=ExtResource("2_oh405")]
+layout_mode = 2
+offset_left = 30.0
+offset_right = 39.0
+offset_bottom = 16.0
+
+[node name="LabelHeart" type="Label" parent="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerLife/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "Lifes: 6"
+label_settings = ExtResource("2_e5lxx")
+
 [node name="NewsUI" type="CanvasLayer" parent="."]
 
 [node name="NewsPanel" type="PanelContainer" parent="NewsUI"]
 unique_name_in_owner = true
 texture_filter = 2
-custom_minimum_size = Vector2(50, 50)
-anchors_preset = 5
+custom_minimum_size = Vector2(50, 15)
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -151.5
-offset_right = 151.5
-offset_bottom = 50.0
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -44.0
+offset_right = 152.0
 grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_p5yo4")
 
 [node name="NewsPanelBgColor" type="ColorRect" parent="NewsUI/NewsPanel"]
@@ -158,26 +208,105 @@ drag_and_drop_selection_enabled = false
 unique_name_in_owner = true
 
 [node name="AstroRigidBody" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
-position = Vector2(351, 428)
+position = Vector2(280, 1312)
+rotation = -1.309
 
 [node name="AstroRigidBody2" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
-position = Vector2(-353, 202)
+position = Vector2(-1380, -1025)
+rotation = 0.523598
+
+[node name="AstroRigidBody16" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(1760, -3051)
+rotation = 0.523598
+
+[node name="AstroRigidBody20" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(1760, -3051)
+rotation = 0.523598
+
+[node name="AstroRigidBody5" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(-2283, -1709)
+rotation = 0.523598
+
+[node name="AstroRigidBody14" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(-629, 808)
+rotation = 0.523598
+
+[node name="AstroRigidBody15" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(-2307, 868)
+rotation = 0.523598
+
+[node name="AstroRigidBody6" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(-719, 2294)
+rotation = 0.523598
+
+[node name="AstroRigidBody7" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(-1258, -74)
+rotation = 0.523598
+
+[node name="AstroRigidBody8" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(2117, -667)
+rotation = 0.523598
+
+[node name="AstroRigidBody9" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(253, -625)
+rotation = 0.523598
+
+[node name="AstroRigidBody17" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(271, -1694)
+rotation = 0.523598
+
+[node name="AstroRigidBody18" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(3378, -805)
+rotation = 0.523598
+
+[node name="AstroRigidBody19" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(3109, 1117)
+rotation = 0.523598
+
+[node name="AstroRigidBody10" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(1302, 3324)
+rotation = 0.523598
+
+[node name="AstroRigidBody11" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(1182, 1011)
+rotation = 0.523598
+
+[node name="AstroRigidBody12" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(2704, 2689)
+rotation = 0.523598
+
+[node name="AstroRigidBody13" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(1625, 1197)
+rotation = 0.523598
 
 [node name="AstroRigidBody3" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
-position = Vector2(537, -137)
+position = Vector2(800, -243)
+rotation = 1.57079
+
+[node name="AstroRigidBody21" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(935, 642)
+rotation = 1.57079
+
+[node name="AstroRigidBody22" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(-569, -27)
+rotation = 1.57079
+
+[node name="AstroRigidBody4" parent="SpawnedAsteroids" instance=ExtResource("5_p4pt5")]
+position = Vector2(1861, 609)
+rotation = 1.57079
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_qf0uy")]
-scale = Vector2(0.7, 0.7)
+position = Vector2(315, 149)
+scale = Vector2(0.6, 0.6)
 
 [node name="AsteroidSpawnManager" parent="CharacterBody2D" node_paths=PackedStringArray("player") instance=ExtResource("8_30ed2")]
 scale = Vector2(1.42857, 1.42857)
-spawn_frequency_timer = 4
 spawn_area_scale = 0.8
 player = NodePath("..")
 
 [node name="StormSpawnManager" parent="CharacterBody2D" node_paths=PackedStringArray("player") instance=ExtResource("7_ugee4")]
 scale = Vector2(1.42857, 1.42857)
-spawn_frequency = 25
+spawn_frequency = 40
 player = NodePath("..")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D/StormSpawnManager"]
@@ -737,3 +866,7 @@ texture = ExtResource("8_0uilv")
 modulate = Color(0.47788, 0.47788, 0.47788, 1)
 position = Vector2(-46, -2443)
 texture = ExtResource("7_m7rg0")
+
+[node name="GameWinLooseManager" parent="." instance=ExtResource("16_ii1m5")]
+
+[connection signal="value_changed" from="PlayerStatsUI/HBoxContainer/VBoxContainer/PanelPlayerStats/HBoxContainer/UIOxygenBar" to="GameWinLooseManager" method="_on_ui_oxygen_bar_value_changed"]

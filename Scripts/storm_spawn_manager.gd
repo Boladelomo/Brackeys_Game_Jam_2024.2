@@ -65,9 +65,9 @@ func start_storm_spawn():
 		var astro_area2d = new_asteroid.get_node("%AstroArea2d")
 		astro_area2d.asteroid_class = astro_resource
 		astro_area2d.is_part_of_storm = true #if false they all will be Small. We can change logic later
-		var rand_player_offset_x = randi_range(-800, 800)
-		var rand_player_offset_y = randi_range(-800, 800)
-		# new_asteroid.move_speed = astro_resource.asteroid_speed
+		var rand_player_offset_x = randi_range(-1000, 1000)
+		var rand_player_offset_y = randi_range(-1000, 1000)
+
 		new_asteroid.move_direction_vector = storm_start_pos.direction_to(player.global_position + Vector2(rand_player_offset_x, rand_player_offset_y))
 
 func storm_notification_start():

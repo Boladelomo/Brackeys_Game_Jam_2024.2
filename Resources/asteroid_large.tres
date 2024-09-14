@@ -6,5 +6,7 @@
 [resource]
 script = ExtResource("1_fnawl")
 asteroid_size = 0
-asteroid_speed = 0.1
+asteroid_speed = 10.0
 sprite_texture = ExtResource("2_hfr7g")
+linear_velocity = Vector2(0, 0)
+rotation_enabled = false

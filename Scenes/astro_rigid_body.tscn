@@ -1,20 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://duu0hvvfr52w1"]
+[gd_scene load_steps=9 format=3 uid="uid://duu0hvvfr52w1"]
 
-[ext_resource type="Script" path="res://Scenes/astro_rigid_body.gd" id="1_03xjh"]
+[ext_resource type="Script" path="res://Scripts/astro_rigid_body.gd" id="1_03xjh"]
 [ext_resource type="Texture2D" uid="uid://d0h013bxlxioo" path="res://Assets/CelestialObjects/SmallRock2x.png" id="2_46trv"]
-[ext_resource type="Script" path="res://Scenes/astro_area_2d.gd" id="2_ky3pl"]
-[ext_resource type="Resource" uid="uid://bdjasxewmgt4m" path="res://Resources/asteroid_large.tres" id="3_u6w2b"]
+[ext_resource type="Script" path="res://Scripts/astro_area_2d.gd" id="2_ky3pl"]
+[ext_resource type="Resource" uid="uid://bdjasxewmgt4m" path="res://Resources/asteroid_large.tres" id="3_p3mhe"]
+[ext_resource type="Shader" path="res://Scripts/fire_asteroid.gdshader" id="4_1cocf"]
+[ext_resource type="Texture2D" uid="uid://s1lsshcirsqh" path="res://Assets/CelestialObjects/Shadow.png" id="6_182cd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dtate"]
+friction = 0.1
+bounce = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vgnik"]
+shader = ExtResource("4_1cocf")
+shader_parameter/fire_color = Color(0.868661, 0.267046, 0, 1)
+shader_parameter/fire_power_factor = 6.0
+shader_parameter/fire_intensity = 1.0
+shader_parameter/fire_start = 1.5
+shader_parameter/ball_size = 1.0
+shader_parameter/roughness = 1.2
+shader_parameter/detail = 7
+shader_parameter/scale = 4.0
+shader_parameter/lacunarity = 1.5
 
 [node name="AstroRigidBody" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 7
 mass = 50.0
+physics_material_override = SubResource("PhysicsMaterial_dtate")
 gravity_scale = 0.0
 inertia = 200.0
 contact_monitor = true
 max_contacts_reported = 5
-constant_force = Vector2(50, 50)
-constant_torque = 50.0
+linear_velocity = Vector2(500, 500)
 script = ExtResource("1_03xjh")
 
 [node name="AstroArea2d" type="Area2D" parent="." node_paths=PackedStringArray("astro_rigid_body")]
@@ -23,11 +41,43 @@ collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_ky3pl")
 astro_rigid_body = NodePath("..")
-asteroid_class = ExtResource("3_u6w2b")
+asteroid_class = ExtResource("3_p3mhe")
 
 [node name="Sprite2D" type="Sprite2D" parent="AstroArea2d"]
 unique_name_in_owner = true
 texture = ExtResource("2_46trv")
 
-[connection signal="body_entered" from="AstroArea2d" to="AstroArea2d" method="_on_body_entered"]
-[connection signal="body_exited" from="AstroArea2d" to="AstroArea2d" method="_on_body_exited"]
+[node name="Fire" type="Node2D" parent="AstroArea2d/Sprite2D"]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="AstroArea2d/Sprite2D/Fire"]
+material = SubResource("ShaderMaterial_vgnik")
+position = Vector2(-65, 0)
+scale = Vector2(6.07031, 5.91797)
+texture = ExtResource("6_182cd")
+
+[node name="PointLight2D" type="PointLight2D" parent="AstroArea2d/Sprite2D/Fire/Sprite2D"]
+visible = false
+show_behind_parent = true
+position = Vector2(15.2295, 0.212272)
+scale = Vector2(0.128984, 0.328358)
+energy = 5.0
+texture = ExtResource("6_182cd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="AstroArea2d/Sprite2D/Fire"]
+material = SubResource("ShaderMaterial_vgnik")
+position = Vector2(68, 0)
+rotation = -3.14159
+scale = Vector2(6.07031, 5.91797)
+texture = ExtResource("6_182cd")
+
+[node name="PointLight2D" type="PointLight2D" parent="AstroArea2d/Sprite2D/Fire/Sprite2D2"]
+visible = false
+show_behind_parent = true
+position = Vector2(15.2295, 0.212272)
+scale = Vector2(0.128984, 0.328358)
+energy = 5.0
+texture = ExtResource("6_182cd")
+
+[connection signal="body_entered" from="AstroArea2d" to="." method="_on_astro_area_2d_body_entered"]
+[connection signal="body_exited" from="AstroArea2d" to="." method="_on_astro_area_2d_body_exited"]

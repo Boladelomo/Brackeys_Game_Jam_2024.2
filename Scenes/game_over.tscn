@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://cigf4f4tgynh4"]
+
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_8e01p"]
+
+[node name="game_over_menu" type="Control"]
+process_mode = 3
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8e01p")
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuLayer"]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuLayer"]
+texture_filter = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -41.0
+offset_right = -10.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(0, 100)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MarginContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LabelGameOver" type="Label" parent="MenuLayer/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "GAME OVER"
+
+[node name="LabelMsg" type="Label" parent="MenuLayer/MarginContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "GAME OVER"
+
+[node name="Restart" type="Button" parent="MenuLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "Restart"
+
+[node name="Options" type="Button" parent="MenuLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "Options
+"
+
+[node name="Debug" type="Button" parent="MenuLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "Debug"
+
+[node name="Quit" type="Button" parent="MenuLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Quit
+"
+
+[connection signal="pressed" from="MenuLayer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MenuLayer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuLayer/MarginContainer/VBoxContainer/Debug" to="." method="_on_debug_pressed"]
+[connection signal="pressed" from="MenuLayer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

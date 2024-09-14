@@ -6,6 +6,8 @@ extends Control
 @onready var is_game_session_running:bool = false
 @onready var is_game_paused:bool = false
 @onready var menu_layer: CanvasLayer = %MenuLayer
+@onready var is_game_over:bool = false
+
 
 @onready var play: Button = %Play
 @onready var options: Button = %Options
@@ -13,6 +15,10 @@ extends Control
 @onready var quit: Button = %Quit
 
 func intiate_main_menu() -> void:
+	# 
+	if is_game_over:
+		get_tree().reload_current_scene()
+		is_game_over = false
 	show()
 	menu_layer.show()
 	play.grab_focus()

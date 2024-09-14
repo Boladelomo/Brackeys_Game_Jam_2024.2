@@ -3,10 +3,9 @@ extends CharacterBody2D
 @export var myBody : CharacterBody2D
 @export var sprite : Sprite2D 
 @onready var collider: CollisionShape2D = $CollisionShape2D : get = _get_player_collider
-
 func _get_player_collider():
 	return collider
-
+	
 
 #OXYGEN LOGIC VARIABLES  - START REGION
 @onready var distance_lable = %DistanceTravelledLabel
@@ -30,7 +29,7 @@ var is_facing_left = true
 var direction := Vector2.ZERO
 var thrust_vector := Vector2.ZERO
 
-const MAX_SPEED := 120.0
+const MAX_SPEED := 70.0
 const MAX_THRUST := 12.0
 const MAX_BOOSTED_SPEED := 160.0
 @export var thrust := 4.5
@@ -46,7 +45,8 @@ func _physics_process(delta):
 	manage_player_movement(delta)
 	
 	if Input.is_action_pressed("jump"):
-		boost()
+		boost()	
+		
 
 	move_and_slide()
 	
@@ -70,7 +70,7 @@ func _physics_process(delta):
 	else:
 		is_moving = true
 	#endregion: OXYGEN CONTROL CODE - END REGION
-
+		
 
 func manage_player_movement(_delta):
 	stop_jet_pack()
@@ -84,51 +84,51 @@ func manage_player_movement(_delta):
 		thrust_vector.y += min(thrust, MAX_THRUST)
 		fire_jet_pack()
 
-	if Input.is_action_pressed("left") and !Input.is_action_pressed("action_gun"):
+	if Input.is_action_pressed("left"):
 		# printt("Moving Left - No Drill")
 		animation_player.play("jetpack_left")
 		thrust_vector.x += max(-thrust, -MAX_THRUST)
 		is_facing_left = true
 		fire_jet_pack()
 	
-	if Input.is_action_pressed("left") and Input.is_action_pressed("action_gun"):	
-		if animation_player.current_animation != "drill_left_loop":
-			# printt("Moving Left - With Drill")
-			animation_player.play("jetpack_drill_left")
-			animation_player.queue("drill_left_loop")
-		thrust_vector.x += max(-thrust, -MAX_THRUST)
-		is_facing_left = true
-		fire_jet_pack()
+	#if Input.is_action_pressed("left") and Input.is_action_pressed("action_gun"):	
+		#if animation_player.current_animation != "drill_left_loop":
+			## printt("Moving Left - With Drill")
+			#animation_player.play("jetpack_drill_left")
+			#animation_player.queue("drill_left_loop")
+		#thrust_vector.x += max(-thrust, -MAX_THRUST)
+		#is_facing_left = true
+		#fire_jet_pack()
 	
-	if Input.is_action_pressed("right") and !Input.is_action_pressed("action_gun"):
+	if Input.is_action_pressed("right"):
 		animation_player.play("jetpack_right")
 		# printt("Moving Right - No Drill")
 		thrust_vector.x += min(thrust, MAX_THRUST)
 		is_facing_left = false
 		fire_jet_pack()
 
-	if Input.is_action_pressed("right") and Input.is_action_pressed("action_gun"):	
-		if animation_player.current_animation != "drill_right_loop":
-			# printt("Moving Right - With Drill")
-			animation_player.play("jetpack_drill_right")
-			animation_player.queue("drill_right_loop")
-		thrust_vector.x += min(thrust, MAX_THRUST)
-		is_facing_left = false
-		fire_jet_pack()
+	#if Input.is_action_pressed("right") and Input.is_action_pressed("action_gun"):	
+		#if animation_player.current_animation != "drill_right_loop":
+			## printt("Moving Right - With Drill")
+			#animation_player.play("jetpack_drill_right")
+			#animation_player.queue("drill_right_loop")
+		#thrust_vector.x += min(thrust, MAX_THRUST)
+		#is_facing_left = false
+		#fire_jet_pack()
 	
-	if Input.is_action_pressed("action_gun") and !Input.is_action_pressed("right") and !Input.is_action_pressed("left"): 
-		if is_facing_left:
-			# printt("Not moving - With Drill Left")
-			if animation_player.current_animation != "drill_left_loop":
-				animation_player.play("jetpack_drill_left")
-				animation_player.queue("drill_left_loop")
-				is_facing_left = true
-		elif !is_facing_left:
-			if animation_player.current_animation != "drill_right_loop":
-				# printt("Not moving - With Drill Right")
-				animation_player.play("jetpack_drill_right")
-				animation_player.queue("drill_right_loop")
-				is_facing_left = false
+	#if Input.is_action_pressed("action_gun") and !Input.is_action_pressed("right") and !Input.is_action_pressed("left"): 
+		#if is_facing_left:
+			## printt("Not moving - With Drill Left")
+			#if animation_player.current_animation != "drill_left_loop":
+				#animation_player.play("jetpack_drill_left")
+				#animation_player.queue("drill_left_loop")
+				#is_facing_left = true
+		#elif !is_facing_left:
+			#if animation_player.current_animation != "drill_right_loop":
+				## printt("Not moving - With Drill Right")
+				#animation_player.play("jetpack_drill_right")
+				#animation_player.queue("drill_right_loop")
+				#is_facing_left = false
 
 	#cap thrust_vector
 	thrust_vector.y = max(thrust_vector.y, -MAX_SPEED) if thrust_vector.y < 0.0 else min(thrust_vector.y, MAX_SPEED)
@@ -148,6 +148,25 @@ func update_oxygen_bar(_distance):
 	Globals.oxygen_changed.emit(oxygen_depletion_value, true)
 	#printt("Bar:", str(oxygen_bar.value), "Consumption:", str(oxygen_depletion_value) , "Moving:", str(is_moving))
 
+func take_damage(damage):
+	Globals.player_health -= damage
+	_play_hit_effect()
+
+func _play_hit_effect():
+	sprite.material.set_shader_parameter("progress", 0.7)
+	#await get_tree().create_timer(0.2).timeout
+	await _play_hit_pushback()
+	sprite.material.set_shader_parameter("progress", 0.0)
+
+func _play_hit_pushback():
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	var start = global_position
+	var end = self.global_position - Vector2(5, 0)
+	tween.tween_property(self, "global_position", end, 0.2).from(start)
+	# tween.tween_property(self, "global_position", start, 0.1).from(global_position)
+	await tween.finished
+
+
 func player_entered_safe_area():
 	is_on_safe_area = true
 	printt("Entered safe area")
@@ -155,18 +174,6 @@ func player_entered_safe_area():
 func player_left_safe_area():
 	is_on_safe_area = false
 	printt("Left safe area")
-
-func _process(delta): 	
-	label.text = "thrustX: " + str(thrust_vector.x) + " thrustY: " + str(thrust_vector.y)
-	# #capping FPS logic
-	# var fps = Engine.get_frames_per_second()
-	# var lerpInterval = direction / fps
-	# var lerpPosition = global_transform.origin + lerpInterval
-
-	# if fps > 30:
-	# 	sprite.global_transform.origin = sprite.global_transform.origin.lerp(lerpPosition, 20 * delta)
-	# else :
-	# 	sprite.global_transform = global_transform
 
 func boost():
 	velocity.x += boost_thrust * Input.get_axis("left", "right")
