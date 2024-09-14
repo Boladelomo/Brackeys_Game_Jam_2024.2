@@ -22,5 +22,7 @@ offset_right = 185.0
 offset_bottom = -86.0
 theme_override_font_sizes/font_size = 32
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

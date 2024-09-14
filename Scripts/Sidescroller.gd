@@ -91,14 +91,7 @@ func manage_player_movement(_delta):
 		is_facing_left = true
 		fire_jet_pack()
 	
-	#if Input.is_action_pressed("left") and Input.is_action_pressed("action_gun"):	
-		#if animation_player.current_animation != "drill_left_loop":
-			## printt("Moving Left - With Drill")
-			#animation_player.play("jetpack_drill_left")
-			#animation_player.queue("drill_left_loop")
-		#thrust_vector.x += max(-thrust, -MAX_THRUST)
-		#is_facing_left = true
-		#fire_jet_pack()
+
 	
 	if Input.is_action_pressed("right"):
 		animation_player.play("jetpack_right")
@@ -107,28 +100,6 @@ func manage_player_movement(_delta):
 		is_facing_left = false
 		fire_jet_pack()
 
-	#if Input.is_action_pressed("right") and Input.is_action_pressed("action_gun"):	
-		#if animation_player.current_animation != "drill_right_loop":
-			## printt("Moving Right - With Drill")
-			#animation_player.play("jetpack_drill_right")
-			#animation_player.queue("drill_right_loop")
-		#thrust_vector.x += min(thrust, MAX_THRUST)
-		#is_facing_left = false
-		#fire_jet_pack()
-	
-	#if Input.is_action_pressed("action_gun") and !Input.is_action_pressed("right") and !Input.is_action_pressed("left"): 
-		#if is_facing_left:
-			## printt("Not moving - With Drill Left")
-			#if animation_player.current_animation != "drill_left_loop":
-				#animation_player.play("jetpack_drill_left")
-				#animation_player.queue("drill_left_loop")
-				#is_facing_left = true
-		#elif !is_facing_left:
-			#if animation_player.current_animation != "drill_right_loop":
-				## printt("Not moving - With Drill Right")
-				#animation_player.play("jetpack_drill_right")
-				#animation_player.queue("drill_right_loop")
-				#is_facing_left = false
 
 	#cap thrust_vector
 	thrust_vector.y = max(thrust_vector.y, -MAX_SPEED) if thrust_vector.y < 0.0 else min(thrust_vector.y, MAX_SPEED)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbrcxc1ua2m0o"
+path="res://.godot/imported/bounce hard.mp3-f88dcb3f96c8d4b374f18d25d3e095d0.mp3str"
+
+[deps]
+
+source_file="res://Assets/sfx/bounce hard.mp3"
+dest_files=["res://.godot/imported/bounce hard.mp3-f88dcb3f96c8d4b374f18d25d3e095d0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

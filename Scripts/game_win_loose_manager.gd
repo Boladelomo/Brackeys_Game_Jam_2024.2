@@ -7,9 +7,10 @@ func _ready() -> void:
 	Globals.oxygen_depleated_death.connect(_on_game_over)
 
 func _on_ui_oxygen_bar_value_changed(value:float) -> void:
-	if value <= 0:
-		Globals.oxygen_depleated_death.emit(value)
-		Globals.game_over_msg = "You ran out of Oxygen"
+	#if value <= 0:
+		#Globals.oxygen_depleated_death.emit(value)
+		#Globals.game_over_msg = "You ran out of Oxygen"
+		pass
 
 func _on_game_over(value) -> void:
 	if value <= 0:

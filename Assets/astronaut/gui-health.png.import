@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk5m2n2ft55n8"
-path="res://.godot/imported/jetpackFire.png-8f1194075ab16597c74fd521c3f12ee3.ctex"
+uid="uid://bvhg5is3dh2s4"
+path="res://.godot/imported/gui-health.png-5942a039ae4b9e6e412690b5f84b201a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/jetpackFire.png"
-dest_files=["res://.godot/imported/jetpackFire.png-8f1194075ab16597c74fd521c3f12ee3.ctex"]
+source_file="res://Assets/astronaut/gui-health.png"
+dest_files=["res://.godot/imported/gui-health.png-5942a039ae4b9e6e412690b5f84b201a.ctex"]
 
 [params]
 

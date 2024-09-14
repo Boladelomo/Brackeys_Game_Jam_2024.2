@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwl8taytxu8oe"
-path="res://.godot/imported/DrillwithGunv6.png-4c5415b95181ac301d91fd660080b6ab.ctex"
+uid="uid://dk5m2n2ft55n8"
+path="res://.godot/imported/jetpackFire.png-9adb2ac625ca2eb068406312e426e040.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/DrillwithGunv6.png"
-dest_files=["res://.godot/imported/DrillwithGunv6.png-4c5415b95181ac301d91fd660080b6ab.ctex"]
+source_file="res://Assets/astronaut/jetpackFire.png"
+dest_files=["res://.godot/imported/jetpackFire.png-9adb2ac625ca2eb068406312e426e040.ctex"]
 
 [params]
 

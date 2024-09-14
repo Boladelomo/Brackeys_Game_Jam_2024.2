@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4hjrp8jhqvyf"
-path="res://.godot/imported/astro1.png-8397d30b2d965a11677c81d5d9a6c1d6.ctex"
+uid="uid://bwl8taytxu8oe"
+path="res://.godot/imported/DrillwithGunv6.png-9b20c7c18e3789c1a0b75e56a131f63e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/astro1.png"
-dest_files=["res://.godot/imported/astro1.png-8397d30b2d965a11677c81d5d9a6c1d6.ctex"]
+source_file="res://Assets/astronaut/DrillwithGunv6.png"
+dest_files=["res://.godot/imported/DrillwithGunv6.png-9b20c7c18e3789c1a0b75e56a131f63e.ctex"]
 
 [params]
 

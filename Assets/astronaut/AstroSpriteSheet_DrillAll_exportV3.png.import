@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbudnhmqt6dyu"
-path="res://.godot/imported/hand2.png-765a92e051aae8d6cceeec6d21920336.ctex"
+uid="uid://0jfaux8yfcs8"
+path="res://.godot/imported/AstroSpriteSheet_DrillAll_exportV3.png-3a49b1755e9afaf45db3925d8599f798.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/hand2.png"
-dest_files=["res://.godot/imported/hand2.png-765a92e051aae8d6cceeec6d21920336.ctex"]
+source_file="res://Assets/astronaut/AstroSpriteSheet_DrillAll_exportV3.png"
+dest_files=["res://.godot/imported/AstroSpriteSheet_DrillAll_exportV3.png-3a49b1755e9afaf45db3925d8599f798.ctex"]
 
 [params]
 

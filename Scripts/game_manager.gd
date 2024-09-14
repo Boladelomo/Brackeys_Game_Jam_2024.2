@@ -66,12 +66,12 @@ func update_heart( index : int, hp : int ) -> void:
 	hearts_array[ index ].value = heart_value
 
 func startup_text() -> void:
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(8).timeout
 		# Start Message
-	await update_news_panel_text("Drill Large Asteroids to earn Oxygen", Color.WHITE)
-	await update_news_panel_text("Avoid Small Asteroids, they are dangerous", Color.WHITE)
-	await update_news_panel_text("Take shelter from the storm on large asteroids", Color.WHITE)
-	await update_news_panel_text("Survive 10 Storms to Win", Color.WHITE)
+	await update_news_panel_text("Mission Control: Kowalski, hang on! We didn't forget about you, the shuttle is coming back!!", Color.WHITE)
+	await update_news_panel_text("The gravitational anomaly seems to be passing by, but asteroids are still crashing into each other!", Color.WHITE)
+	await update_news_panel_text("Do your best to hide behind the larger stationary asteroids and remember...", Color.WHITE)
+	await update_news_panel_text("Stay Calm before the Storm!™", Color.WHITE)
 
 func update_news_panel_text(text_to_update, bgcolor) -> void:
 	news_panel.visible = true
