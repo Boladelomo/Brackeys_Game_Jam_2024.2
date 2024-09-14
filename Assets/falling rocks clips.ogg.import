@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bmmhahd7vlmeh"
+path="res://.godot/imported/falling rocks clips.ogg-a0de49281e1aec2a14068e7d4e73b489.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/falling rocks clips.ogg"
+dest_files=["res://.godot/imported/falling rocks clips.ogg-a0de49281e1aec2a14068e7d4e73b489.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

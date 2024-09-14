@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://boanney2fv1ho"
+path="res://.godot/imported/bounce hard.ogg-c6ad836f7379b4f6d6a52de962d5b40c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/bounce hard.ogg"
+dest_files=["res://.godot/imported/bounce hard.ogg-c6ad836f7379b4f6d6a52de962d5b40c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
